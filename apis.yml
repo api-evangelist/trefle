@@ -1,27 +1,41 @@
 aid: trefle
 name: Trefle
-description: 'We are an open, freely accessible botanical data source and REST API. '
+description: An open, freely accessible botanical data source and REST API for plant information.
 type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API
+  - Plants
+  - Botany
+  - Science
 created: '2025-02-24'
-modified: '2025-02-24'
+modified: '2026-03-16'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/trefle/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
   - aid: trefle:trefle
-    name: Trefle
-    description: 'We are an open, freely accessible botanical data source and REST API. '
-    humanURL: ' https://trefle.io/'
+    name: Trefle API
+    description: An open, freely accessible botanical data source and REST API for plant information.
+    humanURL: https://trefle.io/
+    baseURL: https://trefle.io/api/v1
     tags:
-      - API
+      - Plants
+      - Botany
+      - Science
     properties:
       - type: Documentation
-        url: ' https://trefle.io/'
+        url: https://docs.trefle.io/
+      - type: Getting Started
+        url: https://docs.trefle.io/docs/guides/getting-started
+common:
+  - type: Website
+    url: https://trefle.io/
+  - type: Documentation
+    url: https://docs.trefle.io/
+  - type: Sign Up
+    url: https://trefle.io/users/sign_in
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
