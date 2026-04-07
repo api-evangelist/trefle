@@ -6,8 +6,8 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Plants
   - Botany
+  - Plants
   - Science
 created: '2025-02-24'
 modified: '2026-03-16'
@@ -21,8 +21,8 @@ apis:
     humanURL: https://trefle.io/
     baseURL: https://trefle.io/api/v1
     tags:
-      - Plants
       - Botany
+      - Plants
       - Science
     properties:
       - type: Documentation
