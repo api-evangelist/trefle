@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trefle/refs/heads/main/json-schema/trefle-plant-schema.json",
+  "title": "Trefle Plant",
+  "description": "A plant record in the Trefle botanical database with taxonomy and species data.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique Trefle plant identifier"
+    },
+    "common_name": {
+      "type": "string",
+      "description": "Common name of the plant in English"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-safe unique identifier"
+    },
+    "scientific_name": {
+      "type": "string",
+      "description": "Scientific (Latin binomial) name"
+    },
+    "status": {
+      "type": "string",
+      "description": "Taxonomic acceptance status"
+    },
+    "rank": {
+      "type": "string",
+      "description": "Taxonomic rank (species, variety, subspecies, etc.)"
+    },
+    "family": {
+      "type": "string",
+      "description": "Scientific plant family name"
+    },
+    "family_common_name": {
+      "type": "string",
+      "description": "Common name of the plant family"
+    },
+    "genus": {
+      "type": "string",
+      "description": "Plant genus"
+    },
+    "genus_id": {
+      "type": "integer",
+      "description": "Trefle genus identifier"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the plant's representative image"
+    },
+    "synonyms": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Synonymous scientific names"
+    }
+  },
+  "required": ["id", "scientific_name", "slug"]
+}

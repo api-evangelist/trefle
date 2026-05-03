@@ -1,0 +1,923 @@
+openapi: 3.1.0
+info:
+  title: Trefle API
+  description: >-
+    Trefle is an open, freely accessible botanical data source and REST API for
+    plant information. The API provides access to data on kingdoms, subkingdoms,
+    divisions, plant families, genus, plant species, and geographic distributions.
+    Over 400,000 plant species are available. Authentication uses a personal
+    access token passed as a query parameter or Authorization header.
+  version: 1.0.0
+  contact:
+    name: Trefle Support
+    url: https://trefle.io
+  license:
+    name: MIT
+    url: https://github.com/treflehq/trefle-api/blob/master/LICENSE
+servers:
+  - url: https://trefle.io/api/v1
+    description: Trefle Production API
+security:
+  - tokenAuth: []
+tags:
+  - name: Plants
+    description: >-
+      Search, list, and retrieve plant species by various attributes including
+      common name, scientific name, slug, and taxonomic identifiers.
+  - name: Species
+    description: >-
+      Access detailed species information including taxonomy, morphology,
+      growth characteristics, soil requirements, and geographic distributions.
+  - name: Kingdoms
+    description: Retrieve botanical kingdom classification data.
+  - name: Subkingdoms
+    description: Retrieve botanical subkingdom classification data.
+  - name: Divisions
+    description: Retrieve botanical division classification data.
+  - name: Division Classes
+    description: Retrieve botanical division class classification data.
+  - name: Division Orders
+    description: Retrieve botanical division order classification data.
+  - name: Families
+    description: Retrieve plant family classification and taxonomy data.
+  - name: Genus
+    description: Retrieve plant genus classification data.
+  - name: Distributions
+    description: >-
+      Access geographic distribution zones and retrieve plants native or
+      established in specific regions.
+paths:
+  /plants:
+    get:
+      operationId: listPlants
+      summary: List Plants
+      description: >-
+        Returns a paginated list of plant species. Supports filtering by
+        common name, slug, complete/incomplete data, and various plant
+        attributes. Results include taxonomic identifiers and basic plant data.
+      tags:
+        - Plants
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          description: Page number for pagination
+        - name: filter[common_name]
+          in: query
+          schema:
+            type: string
+          description: Filter plants by common name (partial match supported)
+        - name: filter[slug]
+          in: query
+          schema:
+            type: string
+          description: Filter plants by slug
+        - name: filter_not[common_name]
+          in: query
+          schema:
+            type: string
+          description: Exclude plants matching this common name
+        - name: order[common_name]
+          in: query
+          schema:
+            type: string
+            enum: [asc, desc]
+          description: Order results by common name
+        - name: order[scientific_name]
+          in: query
+          schema:
+            type: string
+            enum: [asc, desc]
+          description: Order results by scientific name
+      responses:
+        '200':
+          description: List of plants returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlantSummary'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /plants/search:
+    get:
+      operationId: searchPlants
+      summary: Search Plants
+      description: >-
+        Search for plants by common name or scientific name. Optimized for
+        autocomplete and "as you type" queries with fast response times.
+        Returns matching plant species with basic taxonomy data.
+      tags:
+        - Plants
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query — common name or scientific name
+        - name: page
+          in: query
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: Search results returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlantSummary'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /plants/{id}:
+    get:
+      operationId: getPlant
+      summary: Get Plant
+      description: >-
+        Retrieves detailed information about a plant by its Trefle ID or slug,
+        including full taxonomy, common names, images, and links to species data.
+      tags:
+        - Plants
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The plant's Trefle ID or slug
+      responses:
+        '200':
+          description: Plant details returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Plant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Plant not found
+  /species:
+    get:
+      operationId: listSpecies
+      summary: List Species
+      description: >-
+        Returns a paginated list of plant species with detailed taxonomic,
+        morphological, and growth data. Supports extensive filtering by
+        growth habit, bloom period, soil type, and other attributes.
+      tags:
+        - Species
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          description: Page number for pagination
+        - name: filter[common_name]
+          in: query
+          schema:
+            type: string
+          description: Filter by common name
+        - name: filter[scientific_name]
+          in: query
+          schema:
+            type: string
+          description: Filter by scientific name
+        - name: filter[genus_id]
+          in: query
+          schema:
+            type: integer
+          description: Filter by genus ID
+        - name: filter[family_common_name]
+          in: query
+          schema:
+            type: string
+          description: Filter by plant family common name
+      responses:
+        '200':
+          description: Species list returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SpeciesSummary'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /species/search:
+    get:
+      operationId: searchSpecies
+      summary: Search Species
+      description: >-
+        Search for species by common name or scientific name. Designed for
+        fast autocomplete-style queries.
+      tags:
+        - Species
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query
+        - name: page
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Search results returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SpeciesSummary'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /species/{id}:
+    get:
+      operationId: getSpecies
+      summary: Get Species
+      description: >-
+        Retrieves comprehensive data for a specific plant species, including
+        full taxonomy, morphology (flowers, foliage, fruit, seeds), growth
+        characteristics, soil and light requirements, and distribution data.
+      tags:
+        - Species
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The species Trefle ID or slug
+      responses:
+        '200':
+          description: Species details returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Species'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Species not found
+  /kingdoms:
+    get:
+      operationId: listKingdoms
+      summary: List Kingdoms
+      description: Returns a list of botanical kingdoms in the Trefle taxonomy.
+      tags:
+        - Kingdoms
+      responses:
+        '200':
+          description: Kingdoms returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TaxonomyEntry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /kingdoms/{id}:
+    get:
+      operationId: getKingdom
+      summary: Get Kingdom
+      description: Retrieves details of a specific botanical kingdom.
+      tags:
+        - Kingdoms
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Kingdom returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TaxonomyEntry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /subkingdoms:
+    get:
+      operationId: listSubkingdoms
+      summary: List Subkingdoms
+      description: Returns a list of botanical subkingdoms.
+      tags:
+        - Subkingdoms
+      responses:
+        '200':
+          description: Subkingdoms returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TaxonomyEntry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /divisions:
+    get:
+      operationId: listDivisions
+      summary: List Divisions
+      description: Returns a list of botanical divisions (phyla).
+      tags:
+        - Divisions
+      responses:
+        '200':
+          description: Divisions returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TaxonomyEntry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /division_classes:
+    get:
+      operationId: listDivisionClasses
+      summary: List Division Classes
+      description: Returns a list of botanical division classes.
+      tags:
+        - Division Classes
+      responses:
+        '200':
+          description: Division classes returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TaxonomyEntry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /division_orders:
+    get:
+      operationId: listDivisionOrders
+      summary: List Division Orders
+      description: Returns a list of botanical division orders.
+      tags:
+        - Division Orders
+      responses:
+        '200':
+          description: Division orders returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TaxonomyEntry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /families:
+    get:
+      operationId: listFamilies
+      summary: List Families
+      description: >-
+        Returns a paginated list of plant families with taxonomy hierarchy data.
+      tags:
+        - Families
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Families returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Family'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /families/{id}:
+    get:
+      operationId: getFamily
+      summary: Get Family
+      description: Retrieves details of a specific plant family.
+      tags:
+        - Families
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Family returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Family'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /genus:
+    get:
+      operationId: listGenus
+      summary: List Genus
+      description: Returns a paginated list of plant genera.
+      tags:
+        - Genus
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Genera returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Genus'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /genus/{id}:
+    get:
+      operationId: getGenus
+      summary: Get Genus
+      description: Retrieves details of a specific plant genus.
+      tags:
+        - Genus
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Genus returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Genus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /distributions:
+    get:
+      operationId: listDistributions
+      summary: List Distributions
+      description: >-
+        Returns a list of geographic distribution zones used in Trefle to
+        describe plant native and established ranges.
+      tags:
+        - Distributions
+      responses:
+        '200':
+          description: Distributions returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Distribution'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /distributions/{id}/plants:
+    get:
+      operationId: getPlantsByDistribution
+      summary: Get Plants by Distribution
+      description: >-
+        Retrieves plants native or established in a specific geographic
+        distribution zone. Can be filtered by establishment type
+        (native, introduced, etc.).
+      tags:
+        - Distributions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Distribution zone slug or ID (e.g., tibet, california, france)
+        - name: filter[establishment]
+          in: query
+          schema:
+            type: string
+            enum: [native, introduced, naturalised, uncertain, endemic]
+          description: Filter by establishment type in the distribution zone
+        - name: page
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Plants in distribution zone returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlantSummary'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: query
+      name: token
+      description: >-
+        Trefle personal access token obtained by registering at trefle.io.
+        Can be passed as a query parameter (?token=YOUR_TOKEN) or in the
+        Authorization header (Authorization: Bearer YOUR_TOKEN).
+  schemas:
+    PlantSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Trefle plant identifier
+        common_name:
+          type: string
+          description: Common name of the plant
+        slug:
+          type: string
+          description: URL-safe unique identifier
+        scientific_name:
+          type: string
+          description: Scientific (Latin) name
+        status:
+          type: string
+          description: Taxonomic status
+        rank:
+          type: string
+          description: Taxonomic rank
+        family_common_name:
+          type: string
+          description: Common name of the plant family
+        family:
+          type: string
+          description: Scientific family name
+        genus_id:
+          type: integer
+        genus:
+          type: string
+          description: Genus name
+        image_url:
+          type: string
+          format: uri
+          description: URL to the plant image
+        synonyms:
+          type: array
+          items:
+            type: string
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            plant:
+              type: string
+            genus:
+              type: string
+    Plant:
+      allOf:
+        - $ref: '#/components/schemas/PlantSummary'
+        - type: object
+          properties:
+            main_species_id:
+              type: integer
+            main_species:
+              $ref: '#/components/schemas/SpeciesSummary'
+    SpeciesSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        common_name:
+          type: string
+        slug:
+          type: string
+        scientific_name:
+          type: string
+        status:
+          type: string
+        rank:
+          type: string
+        family_common_name:
+          type: string
+        family:
+          type: string
+        genus_id:
+          type: integer
+        genus:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        synonyms:
+          type: array
+          items:
+            type: string
+        links:
+          type: object
+    Species:
+      allOf:
+        - $ref: '#/components/schemas/SpeciesSummary'
+        - type: object
+          properties:
+            common_names:
+              type: object
+              description: Common names by language code
+            distribution:
+              type: object
+              properties:
+                native:
+                  type: array
+                  items:
+                    type: string
+                introduced:
+                  type: array
+                  items:
+                    type: string
+                naturalised:
+                  type: array
+                  items:
+                    type: string
+            distributions:
+              type: object
+              description: Detailed distribution zone objects
+            edible:
+              type: boolean
+            edible_part:
+              type: array
+              items:
+                type: string
+            vegetable:
+              type: boolean
+            observations:
+              type: string
+            growth:
+              type: object
+              properties:
+                days_to_harvest:
+                  type: integer
+                row_spacing:
+                  $ref: '#/components/schemas/Measurement'
+                spread:
+                  $ref: '#/components/schemas/Measurement'
+                ph_maximum:
+                  type: number
+                ph_minimum:
+                  type: number
+                light:
+                  type: integer
+                atmospheric_humidity:
+                  type: integer
+                bloom_months:
+                  type: array
+                  items:
+                    type: string
+                fruit_months:
+                  type: array
+                  items:
+                    type: string
+                soil_humidity:
+                  type: integer
+                soil_nutriments:
+                  type: integer
+                soil_salinity:
+                  type: integer
+                soil_texture:
+                  type: integer
+            specifications:
+              type: object
+              properties:
+                ligneous_type:
+                  type: string
+                growth_form:
+                  type: string
+                growth_habit:
+                  type: string
+                growth_rate:
+                  type: string
+                average_height:
+                  $ref: '#/components/schemas/Measurement'
+                maximum_height:
+                  $ref: '#/components/schemas/Measurement'
+                nitrogen_fixation:
+                  type: string
+                shape_and_orientation:
+                  type: string
+                toxicity:
+                  type: string
+            flower:
+              type: object
+              properties:
+                color:
+                  type: array
+                  items:
+                    type: string
+                conspicuous:
+                  type: boolean
+            foliage:
+              type: object
+              properties:
+                texture:
+                  type: string
+                color:
+                  type: array
+                  items:
+                    type: string
+                leaf_retention:
+                  type: boolean
+            fruit_or_seed:
+              type: object
+              properties:
+                conspicuous:
+                  type: boolean
+                color:
+                  type: array
+                  items:
+                    type: string
+                shape:
+                  type: string
+                seed_persistence:
+                  type: boolean
+    TaxonomyEntry:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        links:
+          type: object
+    Family:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        common_name:
+          type: string
+        slug:
+          type: string
+        division_order:
+          type: object
+        links:
+          type: object
+    Genus:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        family:
+          type: object
+        links:
+          type: object
+    Distribution:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        tdwg_code:
+          type: string
+          description: TDWG geographic code
+        tdwg_level:
+          type: integer
+        species_count:
+          type: integer
+        links:
+          type: object
+    Measurement:
+      type: object
+      properties:
+        cm:
+          type: number
+          description: Measurement in centimeters
+    PaginationLinks:
+      type: object
+      properties:
+        self:
+          type: string
+        first:
+          type: string
+        next:
+          type: string
+        prev:
+          type: string
+        last:
+          type: string
+    PaginationMeta:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query
+  responses:
+    Unauthorized:
+      description: >-
+        Authentication failed. Access token missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string

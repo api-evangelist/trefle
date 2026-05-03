@@ -1,0 +1,143 @@
+title: Trefle Vocabulary
+description: >-
+  Domain vocabulary for the Trefle botanical data API covering plant taxonomy,
+  morphology, growth requirements, geographic distributions, and botanical
+  classification concepts aligned with TDWG standards.
+created: "2026-05-03"
+modified: "2026-05-03"
+
+terms:
+  - term: Species
+    definition: >-
+      The fundamental taxonomic unit in botany. In Trefle, a species record
+      includes scientific name, common names, morphological data, growth
+      requirements, edibility, and geographic distribution ranges.
+    tags:
+      - Core Concept
+      - Taxonomy
+    related:
+      - Genus
+      - Family
+
+  - term: Plant
+    definition: >-
+      The top-level Trefle entity that groups species and subspecies under a
+      common plant concept. Each plant has an ID, slug, main species, and
+      links to its full species data.
+    tags:
+      - Core Concept
+      - Taxonomy
+
+  - term: Slug
+    definition: >-
+      A URL-safe identifier for plants and species in Trefle, derived from
+      the scientific name (e.g., "solanum-lycopersicum" for Solanum lycopersicum).
+      Used in API paths for stable resource identification.
+    tags:
+      - API Design
+      - Identifier
+
+  - term: Kingdom
+    definition: >-
+      The highest taxonomic rank in Trefle's botanical classification hierarchy.
+      Plant species belong to the Plantae kingdom.
+    tags:
+      - Taxonomy
+      - Classification
+
+  - term: Division
+    definition: >-
+      A major taxonomic grouping within a kingdom, equivalent to "phylum" in
+      animal taxonomy. Examples include Magnoliophyta (flowering plants) and
+      Pinophyta (conifers).
+    tags:
+      - Taxonomy
+      - Classification
+
+  - term: Family
+    definition: >-
+      A taxonomic rank grouping related genera. Examples include Solanaceae
+      (nightshade family) and Rosaceae (rose family). Trefle includes both
+      scientific and common family names.
+    tags:
+      - Taxonomy
+      - Classification
+
+  - term: Genus
+    definition: >-
+      A taxonomic rank below family and above species. The first word in a
+      binomial scientific name (e.g., "Solanum" in Solanum lycopersicum).
+    tags:
+      - Taxonomy
+      - Classification
+
+  - term: Distribution
+    definition: >-
+      A geographic zone in Trefle representing a region where a plant species
+      occurs. Based on TDWG (Taxonomic Databases Working Group) geographic
+      codes. Each distribution record has a tdwg_code, level, and species count.
+    tags:
+      - Geography
+      - Range Data
+
+  - term: Establishment
+    definition: >-
+      The status of a plant species in a geographic zone. Trefle uses the
+      following values: native (originated there), introduced (brought by
+      humans), naturalised (introduced but self-sustaining), endemic (found
+      only there), and uncertain.
+    tags:
+      - Distribution
+      - Ecology
+
+  - term: TDWG
+    definition: >-
+      Taxonomic Databases Working Group (now Biodiversity Information Standards).
+      Trefle uses TDWG geographic codes (tdwg_code) to standardize plant
+      distribution zones globally.
+    tags:
+      - Standards
+      - Geography
+
+  - term: Edible Part
+    definition: >-
+      The parts of a plant species that are edible for human consumption.
+      Values include fruit, root, leaves, seed, flower, stem, bark, and others.
+      Trefle tracks edibility at the species level.
+    tags:
+      - Edibility
+      - Agriculture
+
+  - term: Growth Habit
+    definition: >-
+      The general growth form of a plant species. Trefle values include erect,
+      spreading, climbing, stoloniferous, mat-forming, and others. Used to
+      characterize how a plant grows in space.
+    tags:
+      - Morphology
+      - Growth
+
+  - term: Ligneous Type
+    definition: >-
+      Classification of woody vs. non-woody growth in Trefle species records.
+      Values include wood (trees and shrubs), semi-wood (semi-woody), and
+      herb (herbaceous/non-woody).
+    tags:
+      - Morphology
+      - Classification
+
+  - term: Light Requirement
+    definition: >-
+      A numeric value (0-10) in Trefle species growth data representing the
+      plant's light requirement. 0 = full shade, 10 = full sun.
+    tags:
+      - Growth
+      - Cultivation
+
+  - term: Soil Humidity
+    definition: >-
+      A numeric value (0-10) in Trefle species growth data representing
+      preferred soil moisture. 0 = very dry, 10 = flooded/aquatic.
+    tags:
+      - Growth
+      - Cultivation

@@ -1,0 +1,97 @@
+extends: spectral:oas
+rules:
+  trefle-operation-id-required:
+    description: All Trefle API operations should have an operationId.
+    message: "Operation should have an operationId"
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  trefle-token-auth-documented:
+    description: >-
+      The Trefle API uses token-based authentication. The global security
+      scheme should specify the tokenAuth apiKey scheme.
+    message: "API should declare global security with token authentication"
+    severity: warn
+    given: "$"
+    then:
+      field: security
+      function: truthy
+
+  trefle-response-200-defined:
+    description: All Trefle API GET operations should define a 200 response.
+    message: "GET operation should define a 200 response"
+    severity: error
+    given: "$.paths[*].get.responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          required: ["200"]
+
+  trefle-response-401-defined:
+    description: All operations should document 401 Unauthorized for token auth errors.
+    message: "Operation should define a 401 Unauthorized response"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          required: ["401"]
+
+  trefle-response-404-on-id-paths:
+    description: >-
+      Endpoints with path parameters (individual resource lookups) should
+      document the 404 Not Found response.
+    message: "ID-based lookup should define a 404 Not Found response"
+    severity: warn
+    given: "$.paths[*{id}*][get].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          required: ["404"]
+
+  trefle-tags-required:
+    description: All operations should have at least one tag for navigation.
+    message: "Operation should have at least one tag"
+    severity: warn
+    given: "$.paths[*][*].tags"
+    then:
+      function: length
+      functionOptions:
+        min: 1
+
+  trefle-description-required:
+    description: All operations should have a description.
+    message: "Operation should have a description"
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: description
+      function: truthy
+
+  trefle-summary-required:
+    description: All operations should have a summary.
+    message: "Operation should have a summary"
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: summary
+      function: truthy
+
+  trefle-pagination-links:
+    description: >-
+      List operations (returning arrays) should include pagination links in
+      the 200 response, consistent with the Trefle API data/links/meta structure.
+    message: "List operation should include pagination links in response schema"
+    severity: info
+    given: "$.paths[*].get.responses.200"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object

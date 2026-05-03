@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trefle/refs/heads/main/json-schema/trefle-species-schema.json",
+  "title": "Trefle Species",
+  "description": "Detailed species record from the Trefle botanical database including morphology, growth, and distribution data.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "integer" },
+    "common_name": { "type": "string" },
+    "slug": { "type": "string" },
+    "scientific_name": { "type": "string" },
+    "status": { "type": "string" },
+    "rank": { "type": "string" },
+    "family": { "type": "string" },
+    "family_common_name": { "type": "string" },
+    "genus": { "type": "string" },
+    "genus_id": { "type": "integer" },
+    "image_url": { "type": "string", "format": "uri" },
+    "edible": { "type": "boolean", "description": "Whether the plant is edible" },
+    "edible_part": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Edible parts of the plant (root, leaves, fruit, etc.)"
+    },
+    "vegetable": { "type": "boolean", "description": "Whether classified as a vegetable" },
+    "distribution": {
+      "type": "object",
+      "description": "Geographic distribution by establishment type",
+      "properties": {
+        "native": { "type": "array", "items": { "type": "string" } },
+        "introduced": { "type": "array", "items": { "type": "string" } },
+        "naturalised": { "type": "array", "items": { "type": "string" } },
+        "endemic": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "growth": {
+      "type": "object",
+      "description": "Growth requirements and characteristics",
+      "properties": {
+        "light": { "type": "integer", "minimum": 0, "maximum": 10, "description": "Light requirement (0-10)" },
+        "atmospheric_humidity": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "soil_humidity": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "ph_minimum": { "type": "number" },
+        "ph_maximum": { "type": "number" },
+        "bloom_months": { "type": "array", "items": { "type": "string" } },
+        "fruit_months": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "specifications": {
+      "type": "object",
+      "description": "Physical specifications",
+      "properties": {
+        "growth_habit": { "type": "string" },
+        "growth_rate": { "type": "string" },
+        "toxicity": { "type": "string" },
+        "ligneous_type": { "type": "string" }
+      }
+    },
+    "flower": {
+      "type": "object",
+      "properties": {
+        "color": { "type": "array", "items": { "type": "string" } },
+        "conspicuous": { "type": "boolean" }
+      }
+    },
+    "foliage": {
+      "type": "object",
+      "properties": {
+        "texture": { "type": "string" },
+        "color": { "type": "array", "items": { "type": "string" } },
+        "leaf_retention": { "type": "boolean" }
+      }
+    }
+  },
+  "required": ["id", "scientific_name", "slug"]
+}

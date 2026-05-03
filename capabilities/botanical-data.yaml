@@ -1,0 +1,266 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Trefle Botanical Data"
+  description: >-
+    Workflow capability for Trefle botanical data covering plant search, species
+    detail retrieval, taxonomy navigation, and geographic distribution analysis.
+    Designed for gardening applications, agricultural tools, ecological research
+    platforms, and farming automation systems that need plant species data.
+  tags:
+    - Agriculture
+    - Botany
+    - Data API
+    - Ecology
+    - Open Data
+    - Plants
+    - Science
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TREFLE_TOKEN: TREFLE_TOKEN
+
+capability:
+  consumes:
+    - import: trefle
+      location: ./shared/trefle-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: trefle-botanical-api
+      description: "Unified REST API for Trefle botanical data workflows."
+      resources:
+        - path: /v1/plants
+          name: plants
+          description: "Browse and discover plant species"
+          operations:
+            - method: GET
+              name: list-plants
+              description: "List plant species with pagination"
+              call: "trefle.list-plants"
+              with:
+                page: "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/plants/search
+          name: plant-search
+          description: "Search for plants by name"
+          operations:
+            - method: GET
+              name: search-plants
+              description: "Search plants by common or scientific name"
+              call: "trefle.search-plants"
+              with:
+                q: "rest.q"
+                page: "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/plants/{id}
+          name: plant-detail
+          description: "Get plant details"
+          operations:
+            - method: GET
+              name: get-plant
+              description: "Get a specific plant by ID or slug"
+              call: "trefle.get-plant"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/species
+          name: species
+          description: "Browse species with detailed botanical data"
+          operations:
+            - method: GET
+              name: list-species
+              description: "List species with taxonomy and growth data"
+              call: "trefle.list-species"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/species/search
+          name: species-search
+          description: "Search species"
+          operations:
+            - method: GET
+              name: search-species
+              description: "Search species by name"
+              call: "trefle.search-species"
+              with:
+                q: "rest.q"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/species/{id}
+          name: species-detail
+          description: "Get comprehensive species data"
+          operations:
+            - method: GET
+              name: get-species
+              description: "Get full species data including morphology and distribution"
+              call: "trefle.get-species"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/families
+          name: families
+          description: "Browse plant family taxonomy"
+          operations:
+            - method: GET
+              name: list-families
+              description: "List all plant families"
+              call: "trefle.list-families"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/genus
+          name: genus
+          description: "Browse plant genus taxonomy"
+          operations:
+            - method: GET
+              name: list-genus
+              description: "List all plant genera"
+              call: "trefle.list-genus"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/distributions
+          name: distributions
+          description: "Browse geographic distribution zones"
+          operations:
+            - method: GET
+              name: list-distributions
+              description: "List all distribution zones"
+              call: "trefle.list-distributions"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/distributions/{id}/plants
+          name: plants-by-distribution
+          description: "Get plants in a specific region"
+          operations:
+            - method: GET
+              name: get-plants-by-distribution
+              description: "Get plants native or established in a geographic zone"
+              call: "trefle.get-plants-by-distribution"
+              with:
+                id: "rest.id"
+                filter[establishment]: "rest.establishment"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: trefle-botanical-mcp
+      transport: http
+      description: "MCP server for AI-assisted botanical data queries with Trefle."
+      tools:
+        # Plant search and discovery
+        - name: search-plants
+          description: "Search the Trefle database for plant species by common or scientific name"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "trefle.search-plants"
+          with:
+            q: "tools.q"
+            page: "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-plants
+          description: "List plant species from Trefle with optional pagination"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "trefle.list-plants"
+          with:
+            page: "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-plant
+          description: "Get basic information about a plant by Trefle ID or slug"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "trefle.get-plant"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        # Species detail
+        - name: search-species
+          description: "Search Trefle plant species by name for detailed botanical data"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "trefle.search-species"
+          with:
+            q: "tools.q"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-species-detail
+          description: "Get comprehensive species data including morphology, growth requirements, and distribution"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "trefle.get-species"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        # Taxonomy
+        - name: list-plant-families
+          description: "List all plant families in the Trefle botanical taxonomy"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "trefle.list-families"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-plant-genera
+          description: "List all plant genera in the Trefle botanical taxonomy"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "trefle.list-genus"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        # Distribution
+        - name: list-distribution-zones
+          description: "List geographic distribution zones used in Trefle plant range data"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "trefle.list-distributions"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-plants-in-region
+          description: "Get plant species native or established in a specific geographic region"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "trefle.get-plants-by-distribution"
+          with:
+            id: "tools.id"
+            filter[establishment]: "tools.establishment"
+          outputParameters:
+            - type: object
+              mapping: "$."

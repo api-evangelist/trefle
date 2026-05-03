@@ -1,0 +1,58 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://trefle.io/api/v1/plants/search?q=tomato&token={your_token}",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": 678281,
+          "common_name": "Tomato",
+          "slug": "solanum-lycopersicum",
+          "scientific_name": "Solanum lycopersicum",
+          "status": "accepted",
+          "rank": "species",
+          "family_common_name": "Nightshade family",
+          "family": "Solanaceae",
+          "genus_id": 2478,
+          "genus": "Solanum",
+          "image_url": "https://bs.floristic.org/image/o/b38d354fd9d15a94d0b8b4a1e5e9d81694d3ebd4.jpg",
+          "synonyms": ["Lycopersicon esculentum"],
+          "links": {
+            "self": "/api/v1/species/solanum-lycopersicum",
+            "plant": "/api/v1/plants/solanum-lycopersicum",
+            "genus": "/api/v1/genus/solanum"
+          }
+        },
+        {
+          "id": 678300,
+          "common_name": "Cherry tomato",
+          "slug": "solanum-lycopersicum-var-cerasiforme",
+          "scientific_name": "Solanum lycopersicum var. cerasiforme",
+          "status": "accepted",
+          "rank": "variety",
+          "family_common_name": "Nightshade family",
+          "family": "Solanaceae",
+          "genus_id": 2478,
+          "genus": "Solanum",
+          "image_url": null,
+          "synonyms": []
+        }
+      ],
+      "links": {
+        "self": "/api/v1/plants/search?q=tomato&page=1",
+        "first": "/api/v1/plants/search?q=tomato&page=1",
+        "next": "/api/v1/plants/search?q=tomato&page=2",
+        "last": "/api/v1/plants/search?q=tomato&page=4"
+      },
+      "meta": {
+        "total": 87
+      }
+    }
+  }
+}

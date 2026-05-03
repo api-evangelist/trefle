@@ -1,0 +1,65 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://trefle.io/api/v1/species/solanum-lycopersicum?token={your_token}",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": {
+        "id": 678281,
+        "common_name": "Tomato",
+        "slug": "solanum-lycopersicum",
+        "scientific_name": "Solanum lycopersicum",
+        "status": "accepted",
+        "rank": "species",
+        "family": "Solanaceae",
+        "family_common_name": "Nightshade family",
+        "genus": "Solanum",
+        "genus_id": 2478,
+        "image_url": "https://bs.floristic.org/image/o/b38d354fd9d15a94d0b8b4a1e5e9d81694d3ebd4.jpg",
+        "edible": true,
+        "edible_part": ["fruit"],
+        "vegetable": true,
+        "distribution": {
+          "native": ["South America"],
+          "introduced": ["Europe", "North America", "Asia"],
+          "naturalised": ["Africa"]
+        },
+        "growth": {
+          "light": 9,
+          "atmospheric_humidity": 5,
+          "soil_humidity": 6,
+          "ph_minimum": 5.5,
+          "ph_maximum": 7.0,
+          "bloom_months": ["May", "June", "July", "August"],
+          "fruit_months": ["July", "August", "September", "October"]
+        },
+        "specifications": {
+          "growth_habit": "erect",
+          "growth_rate": "rapid",
+          "toxicity": "none",
+          "average_height": { "cm": 120 },
+          "maximum_height": { "cm": 200 }
+        },
+        "flower": {
+          "color": ["yellow"],
+          "conspicuous": true
+        },
+        "foliage": {
+          "texture": "medium",
+          "color": ["green"],
+          "leaf_retention": false
+        },
+        "fruit_or_seed": {
+          "conspicuous": true,
+          "color": ["red", "yellow", "orange"],
+          "shape": "round"
+        }
+      }
+    }
+  }
+}

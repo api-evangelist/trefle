@@ -1,0 +1,60 @@
+{
+  "title": "Trefle Species Structure",
+  "description": "Structural documentation for Trefle Plant and Species objects",
+  "type": "object",
+  "structure": {
+    "PlantSummary": {
+      "id": { "type": "integer", "description": "Trefle plant ID" },
+      "common_name": { "type": "string" },
+      "slug": { "type": "string" },
+      "scientific_name": { "type": "string" },
+      "status": { "type": "string" },
+      "rank": { "type": "string" },
+      "family": { "type": "string" },
+      "family_common_name": { "type": "string" },
+      "genus": { "type": "string" },
+      "image_url": { "type": "string", "format": "uri" },
+      "synonyms": { "type": "array", "items": { "type": "string" } }
+    },
+    "Species": {
+      "id": { "type": "integer" },
+      "scientific_name": { "type": "string" },
+      "edible": { "type": "boolean" },
+      "edible_part": { "type": "array" },
+      "distribution": {
+        "native": { "type": "array" },
+        "introduced": { "type": "array" },
+        "naturalised": { "type": "array" }
+      },
+      "growth": {
+        "light": { "type": "integer", "range": "0-10" },
+        "ph_minimum": { "type": "number" },
+        "ph_maximum": { "type": "number" },
+        "bloom_months": { "type": "array" },
+        "soil_humidity": { "type": "integer", "range": "0-10" }
+      },
+      "flower": {
+        "color": { "type": "array" },
+        "conspicuous": { "type": "boolean" }
+      },
+      "foliage": {
+        "texture": { "type": "string" },
+        "color": { "type": "array" },
+        "leaf_retention": { "type": "boolean" }
+      },
+      "specifications": {
+        "growth_habit": { "type": "string" },
+        "growth_rate": { "type": "string" },
+        "toxicity": { "type": "string" }
+      }
+    },
+    "Distribution": {
+      "id": { "type": "integer" },
+      "name": { "type": "string" },
+      "slug": { "type": "string" },
+      "tdwg_code": { "type": "string" },
+      "tdwg_level": { "type": "integer" },
+      "species_count": { "type": "integer" }
+    }
+  }
+}
