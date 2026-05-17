@@ -30,7 +30,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.trefle.io/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.trefle.io/docs/guides/getting-started
       - type: OpenAPI
         url: openapi/trefle-openapi.yml
@@ -55,7 +55,7 @@ common:
     url: https://trefle.io/
   - type: Documentation
     url: https://docs.trefle.io/
-  - type: Sign Up
+  - type: SignUp
     url: https://trefle.io/users/sign_in
   - type: GitHub
     url: https://github.com/treflehq
