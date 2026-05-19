@@ -1,0 +1,121 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trefle API — Families
+  description: 'Trefle API — Families. 2 operations. Lead operation: List Families. Self-contained Naftiko capability covering
+    one Trefle business surface.'
+  tags:
+  - Trefle
+  - Families
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TREFLE_API_KEY: TREFLE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: trefle-families
+    baseUri: https://trefle.io/api/v1
+    description: Trefle API — Families business capability. Self-contained, no shared references.
+    resources:
+    - name: families
+      path: /families
+      operations:
+      - name: listfamilies
+        method: GET
+        description: List Families
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+    - name: families-id
+      path: /families/{id}
+      operations:
+      - name: getfamily
+        method: GET
+        description: Get Family
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.TREFLE_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: trefle-families-rest
+    port: 8080
+    description: REST adapter for Trefle API — Families. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/families
+      name: families
+      description: REST surface for families.
+      operations:
+      - method: GET
+        name: listfamilies
+        description: List Families
+        call: trefle-families.listfamilies
+        with:
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/families/{id}
+      name: families-id
+      description: REST surface for families-id.
+      operations:
+      - method: GET
+        name: getfamily
+        description: Get Family
+        call: trefle-families.getfamily
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: trefle-families-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trefle API — Families. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-families
+      description: List Families
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: trefle-families.listfamilies
+      with:
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-family
+      description: Get Family
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: trefle-families.getfamily
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

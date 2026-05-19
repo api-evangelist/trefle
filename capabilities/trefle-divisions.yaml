@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trefle API — Divisions
+  description: 'Trefle API — Divisions. 1 operations. Lead operation: List Divisions. Self-contained Naftiko capability covering
+    one Trefle business surface.'
+  tags:
+  - Trefle
+  - Divisions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TREFLE_API_KEY: TREFLE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: trefle-divisions
+    baseUri: https://trefle.io/api/v1
+    description: Trefle API — Divisions business capability. Self-contained, no shared references.
+    resources:
+    - name: divisions
+      path: /divisions
+      operations:
+      - name: listdivisions
+        method: GET
+        description: List Divisions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.TREFLE_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: trefle-divisions-rest
+    port: 8080
+    description: REST adapter for Trefle API — Divisions. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/divisions
+      name: divisions
+      description: REST surface for divisions.
+      operations:
+      - method: GET
+        name: listdivisions
+        description: List Divisions
+        call: trefle-divisions.listdivisions
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: trefle-divisions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trefle API — Divisions. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-divisions
+      description: List Divisions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: trefle-divisions.listdivisions
+      outputParameters:
+      - type: object
+        mapping: $.

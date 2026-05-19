@@ -1,0 +1,125 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trefle API — Distributions
+  description: 'Trefle API — Distributions. 2 operations. Lead operation: List Distributions. Self-contained Naftiko capability
+    covering one Trefle business surface.'
+  tags:
+  - Trefle
+  - Distributions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TREFLE_API_KEY: TREFLE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: trefle-distributions
+    baseUri: https://trefle.io/api/v1
+    description: Trefle API — Distributions business capability. Self-contained, no shared references.
+    resources:
+    - name: distributions
+      path: /distributions
+      operations:
+      - name: listdistributions
+        method: GET
+        description: List Distributions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: distributions-id-plants
+      path: /distributions/{id}/plants
+      operations:
+      - name: getplantsbydistribution
+        method: GET
+        description: Get Plants by Distribution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Distribution zone slug or ID (e.g., tibet, california, france)
+          required: true
+        - name: filter[establishment]
+          in: query
+          type: string
+          description: Filter by establishment type in the distribution zone
+        - name: page
+          in: query
+          type: integer
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.TREFLE_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: trefle-distributions-rest
+    port: 8080
+    description: REST adapter for Trefle API — Distributions. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/distributions
+      name: distributions
+      description: REST surface for distributions.
+      operations:
+      - method: GET
+        name: listdistributions
+        description: List Distributions
+        call: trefle-distributions.listdistributions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/distributions/{id}/plants
+      name: distributions-id-plants
+      description: REST surface for distributions-id-plants.
+      operations:
+      - method: GET
+        name: getplantsbydistribution
+        description: Get Plants by Distribution
+        call: trefle-distributions.getplantsbydistribution
+        with:
+          id: rest.id
+          filter[establishment]: rest.filter[establishment]
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: trefle-distributions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trefle API — Distributions. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-distributions
+      description: List Distributions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: trefle-distributions.listdistributions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-plants-distribution
+      description: Get Plants by Distribution
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: trefle-distributions.getplantsbydistribution
+      with:
+        id: tools.id
+        filter[establishment]: tools.filter[establishment]
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.

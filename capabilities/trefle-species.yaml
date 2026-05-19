@@ -1,0 +1,194 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trefle API — Species
+  description: 'Trefle API — Species. 3 operations. Lead operation: List Species. Self-contained Naftiko capability covering
+    one Trefle business surface.'
+  tags:
+  - Trefle
+  - Species
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TREFLE_API_KEY: TREFLE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: trefle-species
+    baseUri: https://trefle.io/api/v1
+    description: Trefle API — Species business capability. Self-contained, no shared references.
+    resources:
+    - name: species
+      path: /species
+      operations:
+      - name: listspecies
+        method: GET
+        description: List Species
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: filter[common_name]
+          in: query
+          type: string
+          description: Filter by common name
+        - name: filter[scientific_name]
+          in: query
+          type: string
+          description: Filter by scientific name
+        - name: filter[genus_id]
+          in: query
+          type: integer
+          description: Filter by genus ID
+        - name: filter[family_common_name]
+          in: query
+          type: string
+          description: Filter by plant family common name
+    - name: species-search
+      path: /species/search
+      operations:
+      - name: searchspecies
+        method: GET
+        description: Search Species
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Search query
+          required: true
+        - name: page
+          in: query
+          type: integer
+    - name: species-id
+      path: /species/{id}
+      operations:
+      - name: getspecies
+        method: GET
+        description: Get Species
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The species Trefle ID or slug
+          required: true
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.TREFLE_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: trefle-species-rest
+    port: 8080
+    description: REST adapter for Trefle API — Species. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/species
+      name: species
+      description: REST surface for species.
+      operations:
+      - method: GET
+        name: listspecies
+        description: List Species
+        call: trefle-species.listspecies
+        with:
+          page: rest.page
+          filter[common_name]: rest.filter[common_name]
+          filter[scientific_name]: rest.filter[scientific_name]
+          filter[genus_id]: rest.filter[genus_id]
+          filter[family_common_name]: rest.filter[family_common_name]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/species/search
+      name: species-search
+      description: REST surface for species-search.
+      operations:
+      - method: GET
+        name: searchspecies
+        description: Search Species
+        call: trefle-species.searchspecies
+        with:
+          q: rest.q
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/species/{id}
+      name: species-id
+      description: REST surface for species-id.
+      operations:
+      - method: GET
+        name: getspecies
+        description: Get Species
+        call: trefle-species.getspecies
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: trefle-species-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trefle API — Species. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-species
+      description: List Species
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: trefle-species.listspecies
+      with:
+        page: tools.page
+        filter[common_name]: tools.filter[common_name]
+        filter[scientific_name]: tools.filter[scientific_name]
+        filter[genus_id]: tools.filter[genus_id]
+        filter[family_common_name]: tools.filter[family_common_name]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-species
+      description: Search Species
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: trefle-species.searchspecies
+      with:
+        q: tools.q
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-species
+      description: Get Species
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: trefle-species.getspecies
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trefle API — Division Classes
+  description: 'Trefle API — Division Classes. 1 operations. Lead operation: List Division Classes. Self-contained Naftiko
+    capability covering one Trefle business surface.'
+  tags:
+  - Trefle
+  - Division Classes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TREFLE_API_KEY: TREFLE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: trefle-division-classes
+    baseUri: https://trefle.io/api/v1
+    description: Trefle API — Division Classes business capability. Self-contained, no shared references.
+    resources:
+    - name: division_classes
+      path: /division_classes
+      operations:
+      - name: listdivisionclasses
+        method: GET
+        description: List Division Classes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.TREFLE_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: trefle-division-classes-rest
+    port: 8080
+    description: REST adapter for Trefle API — Division Classes. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/division-classes
+      name: division-classes
+      description: REST surface for division_classes.
+      operations:
+      - method: GET
+        name: listdivisionclasses
+        description: List Division Classes
+        call: trefle-division-classes.listdivisionclasses
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: trefle-division-classes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trefle API — Division Classes. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-division-classes
+      description: List Division Classes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: trefle-division-classes.listdivisionclasses
+      outputParameters:
+      - type: object
+        mapping: $.

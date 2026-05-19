@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trefle API — Subkingdoms
+  description: 'Trefle API — Subkingdoms. 1 operations. Lead operation: List Subkingdoms. Self-contained Naftiko capability
+    covering one Trefle business surface.'
+  tags:
+  - Trefle
+  - Subkingdoms
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TREFLE_API_KEY: TREFLE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: trefle-subkingdoms
+    baseUri: https://trefle.io/api/v1
+    description: Trefle API — Subkingdoms business capability. Self-contained, no shared references.
+    resources:
+    - name: subkingdoms
+      path: /subkingdoms
+      operations:
+      - name: listsubkingdoms
+        method: GET
+        description: List Subkingdoms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.TREFLE_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: trefle-subkingdoms-rest
+    port: 8080
+    description: REST adapter for Trefle API — Subkingdoms. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/subkingdoms
+      name: subkingdoms
+      description: REST surface for subkingdoms.
+      operations:
+      - method: GET
+        name: listsubkingdoms
+        description: List Subkingdoms
+        call: trefle-subkingdoms.listsubkingdoms
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: trefle-subkingdoms-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trefle API — Subkingdoms. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-subkingdoms
+      description: List Subkingdoms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: trefle-subkingdoms.listsubkingdoms
+      outputParameters:
+      - type: object
+        mapping: $.
