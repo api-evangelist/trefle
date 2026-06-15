@@ -1,6 +1,7 @@
 aid: trefle
 name: Trefle
-description: An open, freely accessible botanical data source and REST API for plant information covering over 400,000 plant
+description: >-
+  An open, freely accessible botanical data source and REST API for plant information covering over 400,000 plant
   species with taxonomy, morphology, growth requirements, and geographic distributions.
 type: Index
 position: Consumer
@@ -19,56 +20,37 @@ specificationVersion: '0.19'
 apis:
   - aid: trefle:trefle
     name: Trefle API
-    description: An open, freely accessible botanical data source and REST API for plant information with taxonomy, species,
+    description: >-
+      An open, freely accessible botanical data source and REST API for plant information with taxonomy, species,
       distributions, and growth data.
     humanURL: https://trefle.io/
     baseURL: https://trefle.io/api/v1
     tags:
-    - Botany
-    - Open Data
-    - Plants
-    - Science
+      - Botany
+      - Open Data
+      - Plants
+      - Science
     properties:
-    - type: Documentation
-      url: https://docs.trefle.io/
-    - type: GettingStarted
-      url: https://docs.trefle.io/docs/guides/getting-started
-    - type: OpenAPI
-      url: openapi/trefle-openapi.yml
-    - type: JSONSchema
-      url: json-schema/trefle-plant-schema.json
-    - type: JSONSchema
-      url: json-schema/trefle-species-schema.json
-    - type: JSONLD
-      url: json-ld/trefle-context.jsonld
-    - type: JSONStructure
-      url: json-structure/trefle-species-structure.json
-    - type: Example
-      url: examples/trefle-search-plants-example.json
-    - type: Example
-      url: examples/trefle-get-species-example.json
-    - type: SpectralRuleset
-      url: rules/trefle-rules.yml
-    - type: NaftikoCapability
-      url: capabilities/trefle-distributions.yaml
-    - type: NaftikoCapability
-      url: capabilities/trefle-division-classes.yaml
-    - type: NaftikoCapability
-      url: capabilities/trefle-division-orders.yaml
-    - type: NaftikoCapability
-      url: capabilities/trefle-divisions.yaml
-    - type: NaftikoCapability
-      url: capabilities/trefle-families.yaml
-    - type: NaftikoCapability
-      url: capabilities/trefle-genus.yaml
-    - type: NaftikoCapability
-      url: capabilities/trefle-kingdoms.yaml
-    - type: NaftikoCapability
-      url: capabilities/trefle-plants.yaml
-    - type: NaftikoCapability
-      url: capabilities/trefle-species.yaml
-    - type: NaftikoCapability
-      url: capabilities/trefle-subkingdoms.yaml
+      - type: Documentation
+        url: https://docs.trefle.io/
+      - type: GettingStarted
+        url: https://docs.trefle.io/docs/guides/getting-started
+      - type: OpenAPI
+        url: openapi/trefle-openapi.yml
+      - type: JSONSchema
+        url: json-schema/trefle-plant-schema.json
+      - type: JSONSchema
+        url: json-schema/trefle-species-schema.json
+      - type: JSONLD
+        url: json-ld/trefle-context.jsonld
+      - type: JSONStructure
+        url: json-structure/trefle-species-structure.json
+      - type: Example
+        url: examples/trefle-search-plants-example.json
+      - type: Example
+        url: examples/trefle-get-species-example.json
+      - type: SpectralRuleset
+        url: rules/trefle-rules.yml
 common:
   - type: LinkedIn
     url: https://www.linkedin.com/company/trefle-api

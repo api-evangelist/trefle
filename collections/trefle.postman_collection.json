@@ -1,0 +1,2744 @@
+{
+  "item": [
+    {
+      "id": "309774fb-e8de-46b2-b9db-1225f85f52a2",
+      "name": "Plants",
+      "description": {
+        "content": "Search, list, and retrieve plant species by various attributes including common name, scientific name, slug, and taxonomic identifiers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0e0eaf45-0608-4e47-b218-33b026799def",
+          "name": "List Plants",
+          "request": {
+            "name": "List Plants",
+            "description": {
+              "content": "Returns a paginated list of plant species. Supports filtering by common name, slug, complete/incomplete data, and various plant attributes. Results include taxonomic identifiers and basic plant data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[common_name]",
+                  "value": "<string>",
+                  "description": "Filter plants by common name (partial match supported)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[slug]",
+                  "value": "<string>",
+                  "description": "Filter plants by slug"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter_not[common_name]",
+                  "value": "<string>",
+                  "description": "Exclude plants matching this common name"
+                },
+                {
+                  "disabled": false,
+                  "key": "order[common_name]",
+                  "value": "<string>",
+                  "description": "Order results by common name"
+                },
+                {
+                  "disabled": false,
+                  "key": "order[scientific_name]",
+                  "value": "<string>",
+                  "description": "Order results by scientific name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48e9619e-83f3-4a45-9537-9f19c83e2ba3",
+              "name": "List of plants returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[slug]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter_not[common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order[common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order[scientific_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 3813,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 632,\n      \"genus\": \"string\",\n      \"image_url\": \"https://NzLveSbvDmObIzyGNgrvtgahLPm.dcfHDrKfBXZJ+M4ZafQxQGO4YjOlY55Y2FgrF0ThOGXP2K1o-ULAB2h05jeBQ6T8MimvC8P3-.IQpurXPc+K.G\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {\n        \"self\": \"string\",\n        \"plant\": \"string\",\n        \"genus\": \"string\"\n      }\n    },\n    {\n      \"id\": 5663,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 1728,\n      \"genus\": \"string\",\n      \"image_url\": \"http://kGTdgG.fsjvfZUfMWcpOW,\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {\n        \"self\": \"string\",\n        \"plant\": \"string\",\n        \"genus\": \"string\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"string\",\n    \"first\": \"string\",\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"last\": \"string\"\n  },\n  \"meta\": {\n    \"total\": 6772\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48f2dbae-d8b1-4a07-ba0a-355eb2ef7bea",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[slug]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter_not[common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order[common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order[scientific_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55bb7d57-d975-43ed-809d-af6fc4a06ef5",
+          "name": "Search Plants",
+          "request": {
+            "name": "Search Plants",
+            "description": {
+              "content": "Search for plants by common name or scientific name. Optimized for autocomplete and \"as you type\" queries with fast response times. Returns matching plant species with basic taxonomy data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plants",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search query — common name or scientific name"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number for pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86658c4b-feeb-449a-9eeb-f9af8c9cf8f4",
+              "name": "Search results returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 3813,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 632,\n      \"genus\": \"string\",\n      \"image_url\": \"https://NzLveSbvDmObIzyGNgrvtgahLPm.dcfHDrKfBXZJ+M4ZafQxQGO4YjOlY55Y2FgrF0ThOGXP2K1o-ULAB2h05jeBQ6T8MimvC8P3-.IQpurXPc+K.G\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {\n        \"self\": \"string\",\n        \"plant\": \"string\",\n        \"genus\": \"string\"\n      }\n    },\n    {\n      \"id\": 5663,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 1728,\n      \"genus\": \"string\",\n      \"image_url\": \"http://kGTdgG.fsjvfZUfMWcpOW,\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {\n        \"self\": \"string\",\n        \"plant\": \"string\",\n        \"genus\": \"string\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"string\",\n    \"first\": \"string\",\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"last\": \"string\"\n  },\n  \"meta\": {\n    \"total\": 6772\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2afdb182-c64a-4250-bbd8-d9bfd2f2f151",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a88ea48-eff6-4245-a672-03192160ba25",
+          "name": "Get Plant",
+          "request": {
+            "name": "Get Plant",
+            "description": {
+              "content": "Retrieves detailed information about a plant by its Trefle ID or slug, including full taxonomy, common names, images, and links to species data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plants",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The plant's Trefle ID or slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9889d4b-289b-42e3-8ef4-483c34e56bde",
+              "name": "Plant details returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The plant's Trefle ID or slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 7983,\n    \"common_name\": \"string\",\n    \"slug\": \"string\",\n    \"scientific_name\": \"string\",\n    \"status\": \"string\",\n    \"rank\": \"string\",\n    \"family_common_name\": \"string\",\n    \"family\": \"string\",\n    \"genus_id\": 5609,\n    \"genus\": \"string\",\n    \"image_url\": \"https://GpXFCH.eljnBKkxaDEB\",\n    \"synonyms\": [\n      \"string\",\n      \"string\"\n    ],\n    \"links\": {\n      \"self\": \"string\",\n      \"plant\": \"string\",\n      \"genus\": \"string\"\n    },\n    \"main_species_id\": 9343,\n    \"main_species\": {\n      \"id\": 8768,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 7256,\n      \"genus\": \"string\",\n      \"image_url\": \"http://PTSnYiuGGlwcRTfagdJWgBTWcQRslcHl.wydhUtGMgSV5tgEK,K5I5Fy9nK5zTrhqRQQVS8\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b232fdaa-127c-4584-bbfa-8925162a01de",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The plant's Trefle ID or slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b841610d-314c-47ef-8cec-8706dcc06d22",
+              "name": "Plant not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The plant's Trefle ID or slug"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1dc8b322-7d33-4e4d-bb7a-0195bae0695e",
+      "name": "Species",
+      "description": {
+        "content": "Access detailed species information including taxonomy, morphology, growth characteristics, soil requirements, and geographic distributions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1ded566e-ba57-4748-9bd1-4aca4044efcf",
+          "name": "List Species",
+          "request": {
+            "name": "List Species",
+            "description": {
+              "content": "Returns a paginated list of plant species with detailed taxonomic, morphological, and growth data. Supports extensive filtering by growth habit, bloom period, soil type, and other attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "species"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[common_name]",
+                  "value": "<string>",
+                  "description": "Filter by common name"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[scientific_name]",
+                  "value": "<string>",
+                  "description": "Filter by scientific name"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[genus_id]",
+                  "value": "<integer>",
+                  "description": "Filter by genus ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[family_common_name]",
+                  "value": "<string>",
+                  "description": "Filter by plant family common name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea0cef1e-8fd8-4fad-8c80-f195d188e637",
+              "name": "Species list returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "species"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[scientific_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[genus_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[family_common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 2072,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 7166,\n      \"genus\": \"string\",\n      \"image_url\": \"https://YDJJmkuUXvnxz.cxbnmahINCgC9QaUET95KgdzqG3oB-rLkEnf\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {}\n    },\n    {\n      \"id\": 6268,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 927,\n      \"genus\": \"string\",\n      \"image_url\": \"http://nKdkyBEVwj.imGo,rL80xj4MTkeqB.DZP9q,0+H.HE9T0CC7vhs\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {}\n    }\n  ],\n  \"links\": {\n    \"self\": \"string\",\n    \"first\": \"string\",\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"last\": \"string\"\n  },\n  \"meta\": {\n    \"total\": 5688\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1f2a5e6-b19e-413f-abf1-00af9b496da6",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "species"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[scientific_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[genus_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[family_common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8dd0c6d-ba7f-4a0d-a2bc-bdd8a122484c",
+          "name": "Search Species",
+          "request": {
+            "name": "Search Species",
+            "description": {
+              "content": "Search for species by common name or scientific name. Designed for fast autocomplete-style queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "species",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search query"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0f9b124-2d9d-40d4-9883-920a629602ad",
+              "name": "Search results returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "species",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 278,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 9282,\n      \"genus\": \"string\",\n      \"image_url\": \"https://heHSczJiHvHF.fntnfLJtyhoa0S5AUiYiD+W6z.FrcZFmC\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {}\n    },\n    {\n      \"id\": 7569,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 8873,\n      \"genus\": \"string\",\n      \"image_url\": \"http://QjEpQbppqvPOcR.mjG-eNP3TO0GFwl\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {}\n    }\n  ],\n  \"links\": {\n    \"self\": \"string\",\n    \"first\": \"string\",\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"last\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02c2135c-acbb-4bef-9f35-a84780bcf8db",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "species",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5d6c4de-4d17-45b8-96a7-8a6d5384e4bc",
+          "name": "Get Species",
+          "request": {
+            "name": "Get Species",
+            "description": {
+              "content": "Retrieves comprehensive data for a specific plant species, including full taxonomy, morphology (flowers, foliage, fruit, seeds), growth characteristics, soil and light requirements, and distribution data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "species",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The species Trefle ID or slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eec593b2-e8ec-4f9c-8948-3b9b2b3124f3",
+              "name": "Species details returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "species",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The species Trefle ID or slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 598,\n    \"common_name\": \"string\",\n    \"slug\": \"string\",\n    \"scientific_name\": \"string\",\n    \"status\": \"string\",\n    \"rank\": \"string\",\n    \"family_common_name\": \"string\",\n    \"family\": \"string\",\n    \"genus_id\": 1399,\n    \"genus\": \"string\",\n    \"image_url\": \"https://WAfJsE.evnIMbeiqf-.mAZDHH6d7Y,xTB+sN+Zz6gE87riKqCln8z6vnYK9vzIi7jcU1y21oLwC+ubzDDSiNSbWa0HFUg4\",\n    \"synonyms\": [\n      \"string\",\n      \"string\"\n    ],\n    \"links\": {},\n    \"common_names\": {},\n    \"distribution\": {\n      \"native\": [\n        \"string\",\n        \"string\"\n      ],\n      \"introduced\": [\n        \"string\",\n        \"string\"\n      ],\n      \"naturalised\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"distributions\": {},\n    \"edible\": false,\n    \"edible_part\": [\n      \"string\",\n      \"string\"\n    ],\n    \"vegetable\": false,\n    \"observations\": \"string\",\n    \"growth\": {\n      \"days_to_harvest\": 8296,\n      \"row_spacing\": {\n        \"cm\": 1874.8468960729792\n      },\n      \"spread\": {\n        \"cm\": 1691.738531479634\n      },\n      \"ph_maximum\": 3394.7023778196394,\n      \"ph_minimum\": 3460.2294390472,\n      \"light\": 3564,\n      \"atmospheric_humidity\": 8701,\n      \"bloom_months\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fruit_months\": [\n        \"string\",\n        \"string\"\n      ],\n      \"soil_humidity\": 3792,\n      \"soil_nutriments\": 7263,\n      \"soil_salinity\": 6276,\n      \"soil_texture\": 3798\n    },\n    \"specifications\": {\n      \"ligneous_type\": \"string\",\n      \"growth_form\": \"string\",\n      \"growth_habit\": \"string\",\n      \"growth_rate\": \"string\",\n      \"average_height\": {\n        \"cm\": 1783.7829090804769\n      },\n      \"maximum_height\": {\n        \"cm\": 2925.5336618173087\n      },\n      \"nitrogen_fixation\": \"string\",\n      \"shape_and_orientation\": \"string\",\n      \"toxicity\": \"string\"\n    },\n    \"flower\": {\n      \"color\": [\n        \"string\",\n        \"string\"\n      ],\n      \"conspicuous\": false\n    },\n    \"foliage\": {\n      \"texture\": \"string\",\n      \"color\": [\n        \"string\",\n        \"string\"\n      ],\n      \"leaf_retention\": true\n    },\n    \"fruit_or_seed\": {\n      \"conspicuous\": true,\n      \"color\": [\n        \"string\",\n        \"string\"\n      ],\n      \"shape\": \"string\",\n      \"seed_persistence\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1fd2f7b-5274-4784-a62a-7aea63d8a0f0",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "species",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The species Trefle ID or slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8a845fa-3977-4263-90c2-f8674cc47221",
+              "name": "Species not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "species",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The species Trefle ID or slug"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "79490464-ed2c-43f4-823b-7e6b2506802a",
+      "name": "Kingdoms",
+      "description": {
+        "content": "Retrieve botanical kingdom classification data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0bd1c1a6-4719-4ffd-8256-6bbd5c91e7fc",
+          "name": "List Kingdoms",
+          "request": {
+            "name": "List Kingdoms",
+            "description": {
+              "content": "Returns a list of botanical kingdoms in the Trefle taxonomy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kingdoms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff1fc526-f4af-4ffa-ab76-b22a1f43cd2f",
+              "name": "Kingdoms returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kingdoms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 2660,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"links\": {}\n    },\n    {\n      \"id\": 5175,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"links\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8212f66-34ca-4e06-9ab1-abe919898990",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kingdoms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ea60478-3baf-4d1b-b9f6-edb1e9fd6744",
+          "name": "Get Kingdom",
+          "request": {
+            "name": "Get Kingdom",
+            "description": {
+              "content": "Retrieves details of a specific botanical kingdom.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kingdoms",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "676ca600-0f19-445d-8754-1d3d3f6b8155",
+              "name": "Kingdom returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kingdoms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 7721,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"links\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5571a55-ffd0-4d0e-b39f-9816f34099e6",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kingdoms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3d1a4150-c813-4631-a0a8-7ba9f6aaf44f",
+      "name": "Subkingdoms",
+      "description": {
+        "content": "Retrieve botanical subkingdom classification data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c8168168-6216-4150-a8f7-c20133098ed6",
+          "name": "List Subkingdoms",
+          "request": {
+            "name": "List Subkingdoms",
+            "description": {
+              "content": "Returns a list of botanical subkingdoms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subkingdoms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "232aab24-ea5c-4d26-8810-2ae9028be18d",
+              "name": "Subkingdoms returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subkingdoms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 2660,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"links\": {}\n    },\n    {\n      \"id\": 5175,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"links\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34c84461-f3a9-495e-b68a-194cd7e4564e",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subkingdoms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1b299d57-e4db-4f03-9c38-5b1eba3f7561",
+      "name": "Divisions",
+      "description": {
+        "content": "Retrieve botanical division classification data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9e339f0a-d3d2-4b45-bd0e-a6d83ff1ff28",
+          "name": "List Divisions",
+          "request": {
+            "name": "List Divisions",
+            "description": {
+              "content": "Returns a list of botanical divisions (phyla).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "divisions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79aabc86-5e7b-4e81-88d1-8b358fc964d9",
+              "name": "Divisions returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "divisions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 2660,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"links\": {}\n    },\n    {\n      \"id\": 5175,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"links\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "266b76d9-b6e0-4e97-be1a-fd17e67758f3",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "divisions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4f09f67b-2d9f-4d45-ad9a-eeb038642bca",
+      "name": "Division Classes",
+      "description": {
+        "content": "Retrieve botanical division class classification data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "173a0503-8349-40f8-bb0a-7b0e9bb41a22",
+          "name": "List Division Classes",
+          "request": {
+            "name": "List Division Classes",
+            "description": {
+              "content": "Returns a list of botanical division classes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "division_classes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5fa069e-6992-4186-8a44-963de5955485",
+              "name": "Division classes returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "division_classes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 2660,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"links\": {}\n    },\n    {\n      \"id\": 5175,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"links\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9734e5e7-a0a9-46ae-899c-435bc323f8be",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "division_classes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4341456b-6ea5-452f-9622-4245fd06c967",
+      "name": "Division Orders",
+      "description": {
+        "content": "Retrieve botanical division order classification data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "241e9fd0-d6d9-4df6-be1f-8b92dd995703",
+          "name": "List Division Orders",
+          "request": {
+            "name": "List Division Orders",
+            "description": {
+              "content": "Returns a list of botanical division orders.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "division_orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fd6f39c-5c76-4ef5-9c3a-fd7aafac60cd",
+              "name": "Division orders returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "division_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 2660,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"links\": {}\n    },\n    {\n      \"id\": 5175,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"links\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ca7b299-fc32-4d07-a994-5608b4708347",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "division_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "fbe8a924-2fbd-4fa5-9393-b56d35b9d9ad",
+      "name": "Families",
+      "description": {
+        "content": "Retrieve plant family classification and taxonomy data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed6e4e36-6af6-42e3-92cf-ae38786ce462",
+          "name": "List Families",
+          "request": {
+            "name": "List Families",
+            "description": {
+              "content": "Returns a paginated list of plant families with taxonomy hierarchy data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "families"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d495df0d-e319-42eb-820b-22e95cd9106d",
+              "name": "Families returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "families"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 7451,\n      \"name\": \"string\",\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"division_order\": {},\n      \"links\": {}\n    },\n    {\n      \"id\": 5184,\n      \"name\": \"string\",\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"division_order\": {},\n      \"links\": {}\n    }\n  ],\n  \"links\": {\n    \"self\": \"string\",\n    \"first\": \"string\",\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"last\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fd1029f-2339-479e-a0d9-812d25b92d13",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "families"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a677992f-a8ae-4a59-8913-c50cdc93dfa2",
+          "name": "Get Family",
+          "request": {
+            "name": "Get Family",
+            "description": {
+              "content": "Retrieves details of a specific plant family.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "families",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2099a001-7bef-41f0-99b9-df64fb188c7a",
+              "name": "Family returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "families",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 305,\n    \"name\": \"string\",\n    \"common_name\": \"string\",\n    \"slug\": \"string\",\n    \"division_order\": {},\n    \"links\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "510ecbb2-ca01-47e7-8837-b9c253292f77",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "families",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3225b4a2-2a5b-48a2-b825-926d1704f885",
+      "name": "Genus",
+      "description": {
+        "content": "Retrieve plant genus classification data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c758851-8f77-48b1-a134-f48a875157a2",
+          "name": "List Genus",
+          "request": {
+            "name": "List Genus",
+            "description": {
+              "content": "Returns a paginated list of plant genera.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "genus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6255b316-f79c-4e1d-8848-6248d06dd5e3",
+              "name": "Genera returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "genus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 3316,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"family\": {},\n      \"links\": {}\n    },\n    {\n      \"id\": 2542,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"family\": {},\n      \"links\": {}\n    }\n  ],\n  \"links\": {\n    \"self\": \"string\",\n    \"first\": \"string\",\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"last\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54c2282b-596b-47a3-862d-146e09391a3a",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "genus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90c2ff6b-cc0e-4f19-a1e4-e7100225ee02",
+          "name": "Get Genus",
+          "request": {
+            "name": "Get Genus",
+            "description": {
+              "content": "Retrieves details of a specific plant genus.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "genus",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8424657-a4c1-4d0f-9f0c-588d8053a4b2",
+              "name": "Genus returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "genus",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 4093,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"family\": {},\n    \"links\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54f7ac7e-2812-4bcc-a0ac-f0367f65a5b8",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "genus",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5e949d51-bbd9-4038-8475-591ceb087cff",
+      "name": "Distributions",
+      "description": {
+        "content": "Access geographic distribution zones and retrieve plants native or established in specific regions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "39893d32-1eb1-471d-8043-fa582a4b15c8",
+          "name": "List Distributions",
+          "request": {
+            "name": "List Distributions",
+            "description": {
+              "content": "Returns a list of geographic distribution zones used in Trefle to describe plant native and established ranges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "distributions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca5bcefe-3215-4e47-9b75-1b41e8288515",
+              "name": "Distributions returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 1212,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"tdwg_code\": \"string\",\n      \"tdwg_level\": 9506,\n      \"species_count\": 406,\n      \"links\": {}\n    },\n    {\n      \"id\": 8143,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"tdwg_code\": \"string\",\n      \"tdwg_level\": 7571,\n      \"species_count\": 1251,\n      \"links\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e562a6e-890c-4344-8368-b29e7b88f138",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32596595-1b38-4873-ac7c-18d71309e273",
+          "name": "Get Plants by Distribution",
+          "request": {
+            "name": "Get Plants by Distribution",
+            "description": {
+              "content": "Retrieves plants native or established in a specific geographic distribution zone. Can be filtered by establishment type (native, introduced, etc.).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "plants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[establishment]",
+                  "value": "<string>",
+                  "description": "Filter by establishment type in the distribution zone"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution zone slug or ID (e.g., tibet, california, france)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e43d5fd-0bbf-41cf-b774-60450fad19b4",
+              "name": "Plants in distribution zone returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "plants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[establishment]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution zone slug or ID (e.g., tibet, california, france)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 2536,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 2469,\n      \"genus\": \"string\",\n      \"image_url\": \"https://jPSMcAwlvBomtaUUmoGbYcwV.umsvZ6dSszzw+E7IMSuXUhNHiIrgo2iDvGdRlRB6wlppXHqYIFipUXCqQEAMWqQw\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {\n        \"self\": \"string\",\n        \"plant\": \"string\",\n        \"genus\": \"string\"\n      }\n    },\n    {\n      \"id\": 8706,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 4743,\n      \"genus\": \"string\",\n      \"image_url\": \"http://oxpXpZkAtJBMAaqcSRjSVLYqBL.vxkEx5ATZLoLaPQrap0v4CrTI\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {\n        \"self\": \"string\",\n        \"plant\": \"string\",\n        \"genus\": \"string\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"string\",\n    \"first\": \"string\",\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"last\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4f541b1-b5a6-4d68-8c4a-7b11765d7677",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "plants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[establishment]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution zone slug or ID (e.g., tibet, california, france)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://trefle.io/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2a862641-52ee-440b-bd1a-7c07468d4f51",
+    "name": "Trefle API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Trefle is an open, freely accessible botanical data source and REST API for plant information. The API provides access to data on kingdoms, subkingdoms, divisions, plant families, genus, plant species, and geographic distributions. Over 400,000 plant species are available. Authentication uses a personal access token passed as a query parameter or Authorization header.\n\nContact Support:\n Name: Trefle Support",
+      "type": "text/plain"
+    }
+  }
+}

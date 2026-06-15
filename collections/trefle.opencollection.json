@@ -1,0 +1,463 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trefle API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Plants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/plants",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "filter[common_name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter plants by common name (partial match supported)"
+              },
+              {
+                "name": "filter[slug]",
+                "value": "",
+                "type": "query",
+                "description": "Filter plants by slug"
+              },
+              {
+                "name": "filter_not[common_name]",
+                "value": "",
+                "type": "query",
+                "description": "Exclude plants matching this common name"
+              },
+              {
+                "name": "order[common_name]",
+                "value": "",
+                "type": "query",
+                "description": "Order results by common name"
+              },
+              {
+                "name": "order[scientific_name]",
+                "value": "",
+                "type": "query",
+                "description": "Order results by scientific name"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of plant species. Supports filtering by common name, slug, complete/incomplete data, and various plant attributes. Results include taxonomic identifiers and basic plant data."
+        },
+        {
+          "info": {
+            "name": "Search Plants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/plants/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query — common name or scientific name"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              }
+            ]
+          },
+          "docs": "Search for plants by common name or scientific name. Optimized for autocomplete and \"as you type\" queries with fast response times. Returns matching plant species with basic taxonomy data."
+        },
+        {
+          "info": {
+            "name": "Get Plant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/plants/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The plant's Trefle ID or slug"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a plant by its Trefle ID or slug, including full taxonomy, common names, images, and links to species data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Species",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Species",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/species",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "filter[common_name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by common name"
+              },
+              {
+                "name": "filter[scientific_name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by scientific name"
+              },
+              {
+                "name": "filter[genus_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by genus ID"
+              },
+              {
+                "name": "filter[family_common_name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by plant family common name"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of plant species with detailed taxonomic, morphological, and growth data. Supports extensive filtering by growth habit, bloom period, soil type, and other attributes."
+        },
+        {
+          "info": {
+            "name": "Search Species",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/species/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search for species by common name or scientific name. Designed for fast autocomplete-style queries."
+        },
+        {
+          "info": {
+            "name": "Get Species",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/species/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The species Trefle ID or slug"
+              }
+            ]
+          },
+          "docs": "Retrieves comprehensive data for a specific plant species, including full taxonomy, morphology (flowers, foliage, fruit, seeds), growth characteristics, soil and light requirements, and distribution data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Kingdoms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Kingdoms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/kingdoms"
+          },
+          "docs": "Returns a list of botanical kingdoms in the Trefle taxonomy."
+        },
+        {
+          "info": {
+            "name": "Get Kingdom",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/kingdoms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves details of a specific botanical kingdom."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subkingdoms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Subkingdoms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/subkingdoms"
+          },
+          "docs": "Returns a list of botanical subkingdoms."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Divisions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Divisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/divisions"
+          },
+          "docs": "Returns a list of botanical divisions (phyla)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Division Classes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Division Classes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/division_classes"
+          },
+          "docs": "Returns a list of botanical division classes."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Division Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Division Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/division_orders"
+          },
+          "docs": "Returns a list of botanical division orders."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Families",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Families",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/families",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of plant families with taxonomy hierarchy data."
+        },
+        {
+          "info": {
+            "name": "Get Family",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/families/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves details of a specific plant family."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Genus",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Genus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/genus",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of plant genera."
+        },
+        {
+          "info": {
+            "name": "Get Genus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/genus/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves details of a specific plant genus."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Distributions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Distributions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/distributions"
+          },
+          "docs": "Returns a list of geographic distribution zones used in Trefle to describe plant native and established ranges."
+        },
+        {
+          "info": {
+            "name": "Get Plants by Distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/distributions/:id/plants",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution zone slug or ID (e.g., tibet, california, france)"
+              },
+              {
+                "name": "filter[establishment]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by establishment type in the distribution zone"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves plants native or established in a specific geographic distribution zone. Can be filtered by establishment type (native, introduced, etc.)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
