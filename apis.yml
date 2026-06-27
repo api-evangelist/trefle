@@ -45,9 +45,9 @@ apis:
         url: json-ld/trefle-context.jsonld
       - type: JSONStructure
         url: json-structure/trefle-species-structure.json
-      - type: Example
+      - type: Examples
         url: examples/trefle-search-plants-example.json
-      - type: Example
+      - type: Examples
         url: examples/trefle-get-species-example.json
       - type: SpectralRuleset
         url: rules/trefle-rules.yml
@@ -58,7 +58,7 @@ common:
     url: https://trefle.io/
   - type: Documentation
     url: https://docs.trefle.io/
-  - type: SignUp
+  - type: Signup
     url: https://trefle.io/users/sign_in
   - type: GitHub
     url: https://github.com/treflehq
