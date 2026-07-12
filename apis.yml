@@ -52,6 +52,10 @@ apis:
       - type: SpectralRuleset
         url: rules/trefle-rules.yml
 common:
+  - type: DomainSecurity
+    url: security/trefle-domain-security.yml
+  - type: Authentication
+    url: authentication/trefle-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/trefle-api
   - type: Website

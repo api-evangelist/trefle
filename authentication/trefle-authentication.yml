@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/trefle-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+schemes:
+- name: tokenAuth
+  type: apiKey
+  in: query
+  parameter: token
+  description: 'Trefle personal access token obtained by registering at trefle.io. Can be passed
+    as a query parameter (?token=YOUR_TOKEN) or in the Authorization header (Authorization:
+    Bearer YOUR_TOKEN).'
+  sources:
+  - openapi/trefle-openapi.yml
