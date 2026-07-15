@@ -52,6 +52,8 @@ apis:
       - type: SpectralRuleset
         url: rules/trefle-rules.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/trefle-agentic-access.yml
   - type: DomainSecurity
     url: security/trefle-domain-security.yml
   - type: Authentication
