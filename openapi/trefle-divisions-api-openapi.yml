@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: Trefle Distributions Divisions API
+  description: Trefle is an open, freely accessible botanical data source and REST API for plant information. The API provides access to data on kingdoms, subkingdoms, divisions, plant families, genus, plant species, and geographic distributions. Over 400,000 plant species are available. Authentication uses a personal access token passed as a query parameter or Authorization header.
+  version: 1.0.0
+  contact:
+    name: Trefle Support
+    url: https://trefle.io
+  license:
+    name: MIT
+    url: https://github.com/treflehq/trefle-api/blob/master/LICENSE
+servers:
+- url: https://trefle.io/api/v1
+  description: Trefle Production API
+security:
+- tokenAuth: []
+tags:
+- name: Divisions
+  description: Retrieve botanical division classification data.
+paths:
+  /divisions:
+    get:
+      operationId: listDivisions
+      summary: List Divisions
+      description: Returns a list of botanical divisions (phyla).
+      tags:
+      - Divisions
+      responses:
+        '200':
+          description: Divisions returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TaxonomyEntry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    TaxonomyEntry:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        links:
+          type: object
+  responses:
+    Unauthorized:
+      description: Authentication failed. Access token missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: query
+      name: token
+      description: 'Trefle personal access token obtained by registering at trefle.io. Can be passed as a query parameter (?token=YOUR_TOKEN) or in the Authorization header (Authorization: Bearer YOUR_TOKEN).'

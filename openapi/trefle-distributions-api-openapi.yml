@@ -1,0 +1,186 @@
+openapi: 3.1.0
+info:
+  title: Trefle Distributions API
+  description: Trefle is an open, freely accessible botanical data source and REST API for plant information. The API provides access to data on kingdoms, subkingdoms, divisions, plant families, genus, plant species, and geographic distributions. Over 400,000 plant species are available. Authentication uses a personal access token passed as a query parameter or Authorization header.
+  version: 1.0.0
+  contact:
+    name: Trefle Support
+    url: https://trefle.io
+  license:
+    name: MIT
+    url: https://github.com/treflehq/trefle-api/blob/master/LICENSE
+servers:
+- url: https://trefle.io/api/v1
+  description: Trefle Production API
+security:
+- tokenAuth: []
+tags:
+- name: Distributions
+  description: Access geographic distribution zones and retrieve plants native or established in specific regions.
+paths:
+  /distributions:
+    get:
+      operationId: listDistributions
+      summary: List Distributions
+      description: Returns a list of geographic distribution zones used in Trefle to describe plant native and established ranges.
+      tags:
+      - Distributions
+      responses:
+        '200':
+          description: Distributions returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Distribution'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /distributions/{id}/plants:
+    get:
+      operationId: getPlantsByDistribution
+      summary: Get Plants by Distribution
+      description: Retrieves plants native or established in a specific geographic distribution zone. Can be filtered by establishment type (native, introduced, etc.).
+      tags:
+      - Distributions
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Distribution zone slug or ID (e.g., tibet, california, france)
+      - name: filter[establishment]
+        in: query
+        schema:
+          type: string
+          enum:
+          - native
+          - introduced
+          - naturalised
+          - uncertain
+          - endemic
+        description: Filter by establishment type in the distribution zone
+      - name: page
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Plants in distribution zone returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlantSummary'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    PaginationLinks:
+      type: object
+      properties:
+        self:
+          type: string
+        first:
+          type: string
+        next:
+          type: string
+        prev:
+          type: string
+        last:
+          type: string
+    Distribution:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        tdwg_code:
+          type: string
+          description: TDWG geographic code
+        tdwg_level:
+          type: integer
+        species_count:
+          type: integer
+        links:
+          type: object
+    PlantSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Trefle plant identifier
+        common_name:
+          type: string
+          description: Common name of the plant
+        slug:
+          type: string
+          description: URL-safe unique identifier
+        scientific_name:
+          type: string
+          description: Scientific (Latin) name
+        status:
+          type: string
+          description: Taxonomic status
+        rank:
+          type: string
+          description: Taxonomic rank
+        family_common_name:
+          type: string
+          description: Common name of the plant family
+        family:
+          type: string
+          description: Scientific family name
+        genus_id:
+          type: integer
+        genus:
+          type: string
+          description: Genus name
+        image_url:
+          type: string
+          format: uri
+          description: URL to the plant image
+        synonyms:
+          type: array
+          items:
+            type: string
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            plant:
+              type: string
+            genus:
+              type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed. Access token missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: query
+      name: token
+      description: 'Trefle personal access token obtained by registering at trefle.io. Can be passed as a query parameter (?token=YOUR_TOKEN) or in the Authorization header (Authorization: Bearer YOUR_TOKEN).'

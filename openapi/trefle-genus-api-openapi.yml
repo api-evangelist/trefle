@@ -1,0 +1,119 @@
+openapi: 3.1.0
+info:
+  title: Trefle Distributions Genus API
+  description: Trefle is an open, freely accessible botanical data source and REST API for plant information. The API provides access to data on kingdoms, subkingdoms, divisions, plant families, genus, plant species, and geographic distributions. Over 400,000 plant species are available. Authentication uses a personal access token passed as a query parameter or Authorization header.
+  version: 1.0.0
+  contact:
+    name: Trefle Support
+    url: https://trefle.io
+  license:
+    name: MIT
+    url: https://github.com/treflehq/trefle-api/blob/master/LICENSE
+servers:
+- url: https://trefle.io/api/v1
+  description: Trefle Production API
+security:
+- tokenAuth: []
+tags:
+- name: Genus
+  description: Retrieve plant genus classification data.
+paths:
+  /genus:
+    get:
+      operationId: listGenus
+      summary: List Genus
+      description: Returns a paginated list of plant genera.
+      tags:
+      - Genus
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Genera returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Genus'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /genus/{id}:
+    get:
+      operationId: getGenus
+      summary: Get Genus
+      description: Retrieves details of a specific plant genus.
+      tags:
+      - Genus
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Genus returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Genus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Genus:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        family:
+          type: object
+        links:
+          type: object
+    PaginationLinks:
+      type: object
+      properties:
+        self:
+          type: string
+        first:
+          type: string
+        next:
+          type: string
+        prev:
+          type: string
+        last:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed. Access token missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: query
+      name: token
+      description: 'Trefle personal access token obtained by registering at trefle.io. Can be passed as a query parameter (?token=YOUR_TOKEN) or in the Authorization header (Authorization: Bearer YOUR_TOKEN).'

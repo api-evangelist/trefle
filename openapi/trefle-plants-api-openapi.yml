@@ -1,0 +1,276 @@
+openapi: 3.1.0
+info:
+  title: Trefle Distributions Plants API
+  description: Trefle is an open, freely accessible botanical data source and REST API for plant information. The API provides access to data on kingdoms, subkingdoms, divisions, plant families, genus, plant species, and geographic distributions. Over 400,000 plant species are available. Authentication uses a personal access token passed as a query parameter or Authorization header.
+  version: 1.0.0
+  contact:
+    name: Trefle Support
+    url: https://trefle.io
+  license:
+    name: MIT
+    url: https://github.com/treflehq/trefle-api/blob/master/LICENSE
+servers:
+- url: https://trefle.io/api/v1
+  description: Trefle Production API
+security:
+- tokenAuth: []
+tags:
+- name: Plants
+  description: Search, list, and retrieve plant species by various attributes including common name, scientific name, slug, and taxonomic identifiers.
+paths:
+  /plants:
+    get:
+      operationId: listPlants
+      summary: List Plants
+      description: Returns a paginated list of plant species. Supports filtering by common name, slug, complete/incomplete data, and various plant attributes. Results include taxonomic identifiers and basic plant data.
+      tags:
+      - Plants
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+        description: Page number for pagination
+      - name: filter[common_name]
+        in: query
+        schema:
+          type: string
+        description: Filter plants by common name (partial match supported)
+      - name: filter[slug]
+        in: query
+        schema:
+          type: string
+        description: Filter plants by slug
+      - name: filter_not[common_name]
+        in: query
+        schema:
+          type: string
+        description: Exclude plants matching this common name
+      - name: order[common_name]
+        in: query
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+        description: Order results by common name
+      - name: order[scientific_name]
+        in: query
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+        description: Order results by scientific name
+      responses:
+        '200':
+          description: List of plants returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlantSummary'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /plants/search:
+    get:
+      operationId: searchPlants
+      summary: Search Plants
+      description: Search for plants by common name or scientific name. Optimized for autocomplete and "as you type" queries with fast response times. Returns matching plant species with basic taxonomy data.
+      tags:
+      - Plants
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Search query — common name or scientific name
+      - name: page
+        in: query
+        schema:
+          type: integer
+        description: Page number for pagination
+      responses:
+        '200':
+          description: Search results returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlantSummary'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /plants/{id}:
+    get:
+      operationId: getPlant
+      summary: Get Plant
+      description: Retrieves detailed information about a plant by its Trefle ID or slug, including full taxonomy, common names, images, and links to species data.
+      tags:
+      - Plants
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The plant's Trefle ID or slug
+      responses:
+        '200':
+          description: Plant details returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Plant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Plant not found
+components:
+  schemas:
+    SpeciesSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        common_name:
+          type: string
+        slug:
+          type: string
+        scientific_name:
+          type: string
+        status:
+          type: string
+        rank:
+          type: string
+        family_common_name:
+          type: string
+        family:
+          type: string
+        genus_id:
+          type: integer
+        genus:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        synonyms:
+          type: array
+          items:
+            type: string
+        links:
+          type: object
+    PaginationLinks:
+      type: object
+      properties:
+        self:
+          type: string
+        first:
+          type: string
+        next:
+          type: string
+        prev:
+          type: string
+        last:
+          type: string
+    PlantSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Trefle plant identifier
+        common_name:
+          type: string
+          description: Common name of the plant
+        slug:
+          type: string
+          description: URL-safe unique identifier
+        scientific_name:
+          type: string
+          description: Scientific (Latin) name
+        status:
+          type: string
+          description: Taxonomic status
+        rank:
+          type: string
+          description: Taxonomic rank
+        family_common_name:
+          type: string
+          description: Common name of the plant family
+        family:
+          type: string
+          description: Scientific family name
+        genus_id:
+          type: integer
+        genus:
+          type: string
+          description: Genus name
+        image_url:
+          type: string
+          format: uri
+          description: URL to the plant image
+        synonyms:
+          type: array
+          items:
+            type: string
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            plant:
+              type: string
+            genus:
+              type: string
+    Plant:
+      allOf:
+      - $ref: '#/components/schemas/PlantSummary'
+      - type: object
+        properties:
+          main_species_id:
+            type: integer
+          main_species:
+            $ref: '#/components/schemas/SpeciesSummary'
+    PaginationMeta:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query
+  responses:
+    Unauthorized:
+      description: Authentication failed. Access token missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: query
+      name: token
+      description: 'Trefle personal access token obtained by registering at trefle.io. Can be passed as a query parameter (?token=YOUR_TOKEN) or in the Authorization header (Authorization: Bearer YOUR_TOKEN).'

@@ -1,0 +1,333 @@
+openapi: 3.1.0
+info:
+  title: Trefle Distributions Species API
+  description: Trefle is an open, freely accessible botanical data source and REST API for plant information. The API provides access to data on kingdoms, subkingdoms, divisions, plant families, genus, plant species, and geographic distributions. Over 400,000 plant species are available. Authentication uses a personal access token passed as a query parameter or Authorization header.
+  version: 1.0.0
+  contact:
+    name: Trefle Support
+    url: https://trefle.io
+  license:
+    name: MIT
+    url: https://github.com/treflehq/trefle-api/blob/master/LICENSE
+servers:
+- url: https://trefle.io/api/v1
+  description: Trefle Production API
+security:
+- tokenAuth: []
+tags:
+- name: Species
+  description: Access detailed species information including taxonomy, morphology, growth characteristics, soil requirements, and geographic distributions.
+paths:
+  /species:
+    get:
+      operationId: listSpecies
+      summary: List Species
+      description: Returns a paginated list of plant species with detailed taxonomic, morphological, and growth data. Supports extensive filtering by growth habit, bloom period, soil type, and other attributes.
+      tags:
+      - Species
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+        description: Page number for pagination
+      - name: filter[common_name]
+        in: query
+        schema:
+          type: string
+        description: Filter by common name
+      - name: filter[scientific_name]
+        in: query
+        schema:
+          type: string
+        description: Filter by scientific name
+      - name: filter[genus_id]
+        in: query
+        schema:
+          type: integer
+        description: Filter by genus ID
+      - name: filter[family_common_name]
+        in: query
+        schema:
+          type: string
+        description: Filter by plant family common name
+      responses:
+        '200':
+          description: Species list returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SpeciesSummary'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /species/search:
+    get:
+      operationId: searchSpecies
+      summary: Search Species
+      description: Search for species by common name or scientific name. Designed for fast autocomplete-style queries.
+      tags:
+      - Species
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Search query
+      - name: page
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Search results returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SpeciesSummary'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /species/{id}:
+    get:
+      operationId: getSpecies
+      summary: Get Species
+      description: Retrieves comprehensive data for a specific plant species, including full taxonomy, morphology (flowers, foliage, fruit, seeds), growth characteristics, soil and light requirements, and distribution data.
+      tags:
+      - Species
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The species Trefle ID or slug
+      responses:
+        '200':
+          description: Species details returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Species'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Species not found
+components:
+  schemas:
+    Measurement:
+      type: object
+      properties:
+        cm:
+          type: number
+          description: Measurement in centimeters
+    Species:
+      allOf:
+      - $ref: '#/components/schemas/SpeciesSummary'
+      - type: object
+        properties:
+          common_names:
+            type: object
+            description: Common names by language code
+          distribution:
+            type: object
+            properties:
+              native:
+                type: array
+                items:
+                  type: string
+              introduced:
+                type: array
+                items:
+                  type: string
+              naturalised:
+                type: array
+                items:
+                  type: string
+          distributions:
+            type: object
+            description: Detailed distribution zone objects
+          edible:
+            type: boolean
+          edible_part:
+            type: array
+            items:
+              type: string
+          vegetable:
+            type: boolean
+          observations:
+            type: string
+          growth:
+            type: object
+            properties:
+              days_to_harvest:
+                type: integer
+              row_spacing:
+                $ref: '#/components/schemas/Measurement'
+              spread:
+                $ref: '#/components/schemas/Measurement'
+              ph_maximum:
+                type: number
+              ph_minimum:
+                type: number
+              light:
+                type: integer
+              atmospheric_humidity:
+                type: integer
+              bloom_months:
+                type: array
+                items:
+                  type: string
+              fruit_months:
+                type: array
+                items:
+                  type: string
+              soil_humidity:
+                type: integer
+              soil_nutriments:
+                type: integer
+              soil_salinity:
+                type: integer
+              soil_texture:
+                type: integer
+          specifications:
+            type: object
+            properties:
+              ligneous_type:
+                type: string
+              growth_form:
+                type: string
+              growth_habit:
+                type: string
+              growth_rate:
+                type: string
+              average_height:
+                $ref: '#/components/schemas/Measurement'
+              maximum_height:
+                $ref: '#/components/schemas/Measurement'
+              nitrogen_fixation:
+                type: string
+              shape_and_orientation:
+                type: string
+              toxicity:
+                type: string
+          flower:
+            type: object
+            properties:
+              color:
+                type: array
+                items:
+                  type: string
+              conspicuous:
+                type: boolean
+          foliage:
+            type: object
+            properties:
+              texture:
+                type: string
+              color:
+                type: array
+                items:
+                  type: string
+              leaf_retention:
+                type: boolean
+          fruit_or_seed:
+            type: object
+            properties:
+              conspicuous:
+                type: boolean
+              color:
+                type: array
+                items:
+                  type: string
+              shape:
+                type: string
+              seed_persistence:
+                type: boolean
+    SpeciesSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        common_name:
+          type: string
+        slug:
+          type: string
+        scientific_name:
+          type: string
+        status:
+          type: string
+        rank:
+          type: string
+        family_common_name:
+          type: string
+        family:
+          type: string
+        genus_id:
+          type: integer
+        genus:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        synonyms:
+          type: array
+          items:
+            type: string
+        links:
+          type: object
+    PaginationLinks:
+      type: object
+      properties:
+        self:
+          type: string
+        first:
+          type: string
+        next:
+          type: string
+        prev:
+          type: string
+        last:
+          type: string
+    PaginationMeta:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query
+  responses:
+    Unauthorized:
+      description: Authentication failed. Access token missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: query
+      name: token
+      description: 'Trefle personal access token obtained by registering at trefle.io. Can be passed as a query parameter (?token=YOUR_TOKEN) or in the Authorization header (Authorization: Bearer YOUR_TOKEN).'
