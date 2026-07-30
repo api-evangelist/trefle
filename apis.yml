@@ -4,9 +4,22 @@ description: >-
   An open, freely accessible botanical data source and REST API for plant information covering over 400,000 plant
   species with taxonomy, morphology, growth requirements, and geographic distributions.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/trefle.png
 tags:
   - Agriculture
   - Botany
@@ -18,39 +31,291 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/trefle/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: trefle:trefle
-    name: Trefle API
-    description: >-
-      An open, freely accessible botanical data source and REST API for plant information with taxonomy, species,
-      distributions, and growth data.
-    humanURL: https://trefle.io/
-    baseURL: https://trefle.io/api/v1
-    tags:
-      - Botany
-      - Open Data
-      - Plants
-      - Science
-    properties:
-      - type: Documentation
-        url: https://docs.trefle.io/
-      - type: GettingStarted
-        url: https://docs.trefle.io/docs/guides/getting-started
-      - type: OpenAPI
-        url: openapi/trefle-openapi.yml
-      - type: JSONSchema
-        url: json-schema/trefle-plant-schema.json
-      - type: JSONSchema
-        url: json-schema/trefle-species-schema.json
-      - type: JSONLD
-        url: json-ld/trefle-context.jsonld
-      - type: JSONStructure
-        url: json-structure/trefle-species-structure.json
-      - type: Examples
-        url: examples/trefle-search-plants-example.json
-      - type: Examples
-        url: examples/trefle-get-species-example.json
-      - type: SpectralRuleset
-        url: rules/trefle-rules.yml
+- aid: trefle:trefle-distributions-api
+  name: Trefle Distributions API
+  description: >-
+    Access geographic distribution zones and retrieve plants native or established in specific regions.
+  humanURL: https://trefle.io/
+  baseURL: https://trefle.io/api/v1
+  tags:
+  - Distributions
+  properties:
+  - type: OpenAPI
+    url: openapi/trefle-distributions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.trefle.io/
+  - type: GettingStarted
+    url: https://docs.trefle.io/docs/guides/getting-started
+  - type: JSONSchema
+    url: json-schema/trefle-plant-schema.json
+  - type: JSONSchema
+    url: json-schema/trefle-species-schema.json
+  - type: JSONLD
+    url: json-ld/trefle-context.jsonld
+  - type: JSONStructure
+    url: json-structure/trefle-species-structure.json
+  - type: Examples
+    url: examples/trefle-search-plants-example.json
+  - type: Examples
+    url: examples/trefle-get-species-example.json
+  - type: SpectralRuleset
+    url: rules/trefle-rules.yml
+- aid: trefle:trefle-division-classes-api
+  name: Trefle Division Classes API
+  description: Retrieve botanical division class classification data.
+  humanURL: https://trefle.io/
+  baseURL: https://trefle.io/api/v1
+  tags:
+  - Division Classes
+  properties:
+  - type: OpenAPI
+    url: openapi/trefle-division-classes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.trefle.io/
+  - type: GettingStarted
+    url: https://docs.trefle.io/docs/guides/getting-started
+  - type: JSONSchema
+    url: json-schema/trefle-plant-schema.json
+  - type: JSONSchema
+    url: json-schema/trefle-species-schema.json
+  - type: JSONLD
+    url: json-ld/trefle-context.jsonld
+  - type: JSONStructure
+    url: json-structure/trefle-species-structure.json
+  - type: Examples
+    url: examples/trefle-search-plants-example.json
+  - type: Examples
+    url: examples/trefle-get-species-example.json
+  - type: SpectralRuleset
+    url: rules/trefle-rules.yml
+- aid: trefle:trefle-division-orders-api
+  name: Trefle Division Orders API
+  description: Retrieve botanical division order classification data.
+  humanURL: https://trefle.io/
+  baseURL: https://trefle.io/api/v1
+  tags:
+  - Division Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/trefle-division-orders-api-openapi.yml
+  - type: Documentation
+    url: https://docs.trefle.io/
+  - type: GettingStarted
+    url: https://docs.trefle.io/docs/guides/getting-started
+  - type: JSONSchema
+    url: json-schema/trefle-plant-schema.json
+  - type: JSONSchema
+    url: json-schema/trefle-species-schema.json
+  - type: JSONLD
+    url: json-ld/trefle-context.jsonld
+  - type: JSONStructure
+    url: json-structure/trefle-species-structure.json
+  - type: Examples
+    url: examples/trefle-search-plants-example.json
+  - type: Examples
+    url: examples/trefle-get-species-example.json
+  - type: SpectralRuleset
+    url: rules/trefle-rules.yml
+- aid: trefle:trefle-divisions-api
+  name: Trefle Divisions API
+  description: Retrieve botanical division classification data.
+  humanURL: https://trefle.io/
+  baseURL: https://trefle.io/api/v1
+  tags:
+  - Divisions
+  properties:
+  - type: OpenAPI
+    url: openapi/trefle-divisions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.trefle.io/
+  - type: GettingStarted
+    url: https://docs.trefle.io/docs/guides/getting-started
+  - type: JSONSchema
+    url: json-schema/trefle-plant-schema.json
+  - type: JSONSchema
+    url: json-schema/trefle-species-schema.json
+  - type: JSONLD
+    url: json-ld/trefle-context.jsonld
+  - type: JSONStructure
+    url: json-structure/trefle-species-structure.json
+  - type: Examples
+    url: examples/trefle-search-plants-example.json
+  - type: Examples
+    url: examples/trefle-get-species-example.json
+  - type: SpectralRuleset
+    url: rules/trefle-rules.yml
+- aid: trefle:trefle-families-api
+  name: Trefle Families API
+  description: Retrieve plant family classification and taxonomy data.
+  humanURL: https://trefle.io/
+  baseURL: https://trefle.io/api/v1
+  tags:
+  - Families
+  properties:
+  - type: OpenAPI
+    url: openapi/trefle-families-api-openapi.yml
+  - type: Documentation
+    url: https://docs.trefle.io/
+  - type: GettingStarted
+    url: https://docs.trefle.io/docs/guides/getting-started
+  - type: JSONSchema
+    url: json-schema/trefle-plant-schema.json
+  - type: JSONSchema
+    url: json-schema/trefle-species-schema.json
+  - type: JSONLD
+    url: json-ld/trefle-context.jsonld
+  - type: JSONStructure
+    url: json-structure/trefle-species-structure.json
+  - type: Examples
+    url: examples/trefle-search-plants-example.json
+  - type: Examples
+    url: examples/trefle-get-species-example.json
+  - type: SpectralRuleset
+    url: rules/trefle-rules.yml
+- aid: trefle:trefle-genus-api
+  name: Trefle Genus API
+  description: Retrieve plant genus classification data.
+  humanURL: https://trefle.io/
+  baseURL: https://trefle.io/api/v1
+  tags:
+  - Genus
+  properties:
+  - type: OpenAPI
+    url: openapi/trefle-genus-api-openapi.yml
+  - type: Documentation
+    url: https://docs.trefle.io/
+  - type: GettingStarted
+    url: https://docs.trefle.io/docs/guides/getting-started
+  - type: JSONSchema
+    url: json-schema/trefle-plant-schema.json
+  - type: JSONSchema
+    url: json-schema/trefle-species-schema.json
+  - type: JSONLD
+    url: json-ld/trefle-context.jsonld
+  - type: JSONStructure
+    url: json-structure/trefle-species-structure.json
+  - type: Examples
+    url: examples/trefle-search-plants-example.json
+  - type: Examples
+    url: examples/trefle-get-species-example.json
+  - type: SpectralRuleset
+    url: rules/trefle-rules.yml
+- aid: trefle:trefle-kingdoms-api
+  name: Trefle Kingdoms API
+  description: Retrieve botanical kingdom classification data.
+  humanURL: https://trefle.io/
+  baseURL: https://trefle.io/api/v1
+  tags:
+  - Kingdoms
+  properties:
+  - type: OpenAPI
+    url: openapi/trefle-kingdoms-api-openapi.yml
+  - type: Documentation
+    url: https://docs.trefle.io/
+  - type: GettingStarted
+    url: https://docs.trefle.io/docs/guides/getting-started
+  - type: JSONSchema
+    url: json-schema/trefle-plant-schema.json
+  - type: JSONSchema
+    url: json-schema/trefle-species-schema.json
+  - type: JSONLD
+    url: json-ld/trefle-context.jsonld
+  - type: JSONStructure
+    url: json-structure/trefle-species-structure.json
+  - type: Examples
+    url: examples/trefle-search-plants-example.json
+  - type: Examples
+    url: examples/trefle-get-species-example.json
+  - type: SpectralRuleset
+    url: rules/trefle-rules.yml
+- aid: trefle:trefle-plants-api
+  name: Trefle Plants API
+  description: >-
+    Search, list, and retrieve plant species by various attributes including common name, scientific name,
+    slug, and taxonomic identifiers.
+  humanURL: https://trefle.io/
+  baseURL: https://trefle.io/api/v1
+  tags:
+  - Plants
+  properties:
+  - type: OpenAPI
+    url: openapi/trefle-plants-api-openapi.yml
+  - type: Documentation
+    url: https://docs.trefle.io/
+  - type: GettingStarted
+    url: https://docs.trefle.io/docs/guides/getting-started
+  - type: JSONSchema
+    url: json-schema/trefle-plant-schema.json
+  - type: JSONSchema
+    url: json-schema/trefle-species-schema.json
+  - type: JSONLD
+    url: json-ld/trefle-context.jsonld
+  - type: JSONStructure
+    url: json-structure/trefle-species-structure.json
+  - type: Examples
+    url: examples/trefle-search-plants-example.json
+  - type: Examples
+    url: examples/trefle-get-species-example.json
+  - type: SpectralRuleset
+    url: rules/trefle-rules.yml
+- aid: trefle:trefle-species-api
+  name: Trefle Species API
+  description: >-
+    Access detailed species information including taxonomy, morphology, growth characteristics, soil requirements,
+    and geographic distributions.
+  humanURL: https://trefle.io/
+  baseURL: https://trefle.io/api/v1
+  tags:
+  - Species
+  properties:
+  - type: OpenAPI
+    url: openapi/trefle-species-api-openapi.yml
+  - type: Documentation
+    url: https://docs.trefle.io/
+  - type: GettingStarted
+    url: https://docs.trefle.io/docs/guides/getting-started
+  - type: JSONSchema
+    url: json-schema/trefle-plant-schema.json
+  - type: JSONSchema
+    url: json-schema/trefle-species-schema.json
+  - type: JSONLD
+    url: json-ld/trefle-context.jsonld
+  - type: JSONStructure
+    url: json-structure/trefle-species-structure.json
+  - type: Examples
+    url: examples/trefle-search-plants-example.json
+  - type: Examples
+    url: examples/trefle-get-species-example.json
+  - type: SpectralRuleset
+    url: rules/trefle-rules.yml
+- aid: trefle:trefle-subkingdoms-api
+  name: Trefle Subkingdoms API
+  description: Retrieve botanical subkingdom classification data.
+  humanURL: https://trefle.io/
+  baseURL: https://trefle.io/api/v1
+  tags:
+  - Subkingdoms
+  properties:
+  - type: OpenAPI
+    url: openapi/trefle-subkingdoms-api-openapi.yml
+  - type: Documentation
+    url: https://docs.trefle.io/
+  - type: GettingStarted
+    url: https://docs.trefle.io/docs/guides/getting-started
+  - type: JSONSchema
+    url: json-schema/trefle-plant-schema.json
+  - type: JSONSchema
+    url: json-schema/trefle-species-schema.json
+  - type: JSONLD
+    url: json-ld/trefle-context.jsonld
+  - type: JSONStructure
+    url: json-structure/trefle-species-structure.json
+  - type: Examples
+    url: examples/trefle-search-plants-example.json
+  - type: Examples
+    url: examples/trefle-get-species-example.json
+  - type: SpectralRuleset
+    url: rules/trefle-rules.yml
 common:
   - type: AgenticAccess
     url: agentic-access/trefle-agentic-access.yml
