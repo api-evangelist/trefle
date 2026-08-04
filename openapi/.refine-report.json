@@ -1,0 +1,32 @@
+{
+  "provider": "trefle",
+  "sources": [
+    "trefle-distributions-api-openapi.yml",
+    "trefle-division-classes-api-openapi.yml",
+    "trefle-division-orders-api-openapi.yml",
+    "trefle-divisions-api-openapi.yml",
+    "trefle-families-api-openapi.yml",
+    "trefle-genus-api-openapi.yml",
+    "trefle-kingdoms-api-openapi.yml",
+    "trefle-plants-api-openapi.yml",
+    "trefle-species-api-openapi.yml",
+    "trefle-subkingdoms-api-openapi.yml"
+  ],
+  "outputs": [
+    "trefle-distributions-api-openapi.yml",
+    "trefle-division-classes-api-openapi.yml",
+    "trefle-division-orders-api-openapi.yml",
+    "trefle-divisions-api-openapi.yml",
+    "trefle-families-api-openapi.yml",
+    "trefle-genus-api-openapi.yml",
+    "trefle-kingdoms-api-openapi.yml",
+    "trefle-plants-api-openapi.yml",
+    "trefle-species-api-openapi.yml",
+    "trefle-subkingdoms-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
