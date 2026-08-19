@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trefle Distributions Species API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Species",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Species",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/species",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "filter[common_name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by common name"
+              },
+              {
+                "name": "filter[scientific_name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by scientific name"
+              },
+              {
+                "name": "filter[genus_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by genus ID"
+              },
+              {
+                "name": "filter[family_common_name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by plant family common name"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of plant species with detailed taxonomic, morphological, and growth data. Supports extensive filtering by growth habit, bloom period, soil type, and other attributes."
+        },
+        {
+          "info": {
+            "name": "Search Species",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/species/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search for species by common name or scientific name. Designed for fast autocomplete-style queries."
+        },
+        {
+          "info": {
+            "name": "Get Species",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/species/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The species Trefle ID or slug"
+              }
+            ]
+          },
+          "docs": "Retrieves comprehensive data for a specific plant species, including full taxonomy, morphology (flowers, foliage, fruit, seeds), growth characteristics, soil and light requirements, and distribution data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

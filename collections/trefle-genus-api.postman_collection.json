@@ -1,0 +1,320 @@
+{
+  "item": [
+    {
+      "id": "f18bf74f-2d0b-418d-9f9d-3e92c637da05",
+      "name": "Genus",
+      "description": {
+        "content": "Retrieve plant genus classification data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0c9bfb61-c33f-4ac3-afb2-6be123f0ca47",
+          "name": "List Genus",
+          "request": {
+            "name": "List Genus",
+            "description": {
+              "content": "Returns a paginated list of plant genera.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "genus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2251fb3e-0f52-486c-92d0-3ed6460083b4",
+              "name": "Genera returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "genus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 7025,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"family\": {},\n      \"links\": {}\n    },\n    {\n      \"id\": 7758,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"family\": {},\n      \"links\": {}\n    }\n  ],\n  \"links\": {\n    \"self\": \"string\",\n    \"first\": \"string\",\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"last\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00bdbc97-18ef-4a8c-b142-68eabefa7bc5",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "genus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "136a30ea-53f7-4402-b559-d49997c4be08",
+          "name": "Get Genus",
+          "request": {
+            "name": "Get Genus",
+            "description": {
+              "content": "Retrieves details of a specific plant genus.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "genus",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54f0928b-0ad6-4788-8004-acaa56e1a36d",
+              "name": "Genus returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "genus",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 3120,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"family\": {},\n    \"links\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c384bffa-ed4d-406c-ab12-beffb80daad0",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "genus",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://trefle.io/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aaee4d18-978e-4739-b827-b2d4ebec9a65",
+    "name": "Trefle Distributions Genus API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Trefle is an open, freely accessible botanical data source and REST API for plant information. The API provides access to data on kingdoms, subkingdoms, divisions, plant families, genus, plant species, and geographic distributions. Over 400,000 plant species are available. Authentication uses a personal access token passed as a query parameter or Authorization header.\n\nContact Support:\n Name: Trefle Support",
+      "type": "text/plain"
+    }
+  }
+}

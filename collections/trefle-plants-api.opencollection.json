@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trefle Distributions Plants API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Plants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/plants",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "filter[common_name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter plants by common name (partial match supported)"
+              },
+              {
+                "name": "filter[slug]",
+                "value": "",
+                "type": "query",
+                "description": "Filter plants by slug"
+              },
+              {
+                "name": "filter_not[common_name]",
+                "value": "",
+                "type": "query",
+                "description": "Exclude plants matching this common name"
+              },
+              {
+                "name": "order[common_name]",
+                "value": "",
+                "type": "query",
+                "description": "Order results by common name"
+              },
+              {
+                "name": "order[scientific_name]",
+                "value": "",
+                "type": "query",
+                "description": "Order results by scientific name"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of plant species. Supports filtering by common name, slug, complete/incomplete data, and various plant attributes. Results include taxonomic identifiers and basic plant data."
+        },
+        {
+          "info": {
+            "name": "Search Plants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/plants/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query — common name or scientific name"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              }
+            ]
+          },
+          "docs": "Search for plants by common name or scientific name. Optimized for autocomplete and \"as you type\" queries with fast response times. Returns matching plant species with basic taxonomy data."
+        },
+        {
+          "info": {
+            "name": "Get Plant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/plants/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The plant's Trefle ID or slug"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a plant by its Trefle ID or slug, including full taxonomy, common names, images, and links to species data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

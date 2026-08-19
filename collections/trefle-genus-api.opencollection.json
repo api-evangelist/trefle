@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trefle Distributions Genus API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Genus",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Genus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/genus",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of plant genera."
+        },
+        {
+          "info": {
+            "name": "Get Genus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/genus/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves details of a specific plant genus."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

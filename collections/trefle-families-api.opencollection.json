@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trefle Distributions Families API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Families",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Families",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/families",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of plant families with taxonomy hierarchy data."
+        },
+        {
+          "info": {
+            "name": "Get Family",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/families/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves details of a specific plant family."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

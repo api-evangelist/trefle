@@ -1,0 +1,337 @@
+{
+  "item": [
+    {
+      "id": "159bc1db-b1f1-4156-b1fb-dee3c82481fb",
+      "name": "Distributions",
+      "description": {
+        "content": "Access geographic distribution zones and retrieve plants native or established in specific regions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1b2ba173-e4b2-4a63-8f0c-e45d1f90812a",
+          "name": "List Distributions",
+          "request": {
+            "name": "List Distributions",
+            "description": {
+              "content": "Returns a list of geographic distribution zones used in Trefle to describe plant native and established ranges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "distributions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0cd9902-2efc-4639-9b3b-8e988d08628f",
+              "name": "Distributions returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 7830,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"tdwg_code\": \"string\",\n      \"tdwg_level\": 3648,\n      \"species_count\": 6334,\n      \"links\": {}\n    },\n    {\n      \"id\": 5824,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"tdwg_code\": \"string\",\n      \"tdwg_level\": 3944,\n      \"species_count\": 5667,\n      \"links\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a83fb0a0-2046-48c8-8c42-9b6c118defb3",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96842a80-a6ee-4dc6-b17a-0ff1d214e546",
+          "name": "Get Plants by Distribution",
+          "request": {
+            "name": "Get Plants by Distribution",
+            "description": {
+              "content": "Retrieves plants native or established in a specific geographic distribution zone. Can be filtered by establishment type (native, introduced, etc.).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "plants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[establishment]",
+                  "value": "<string>",
+                  "description": "Filter by establishment type in the distribution zone"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution zone slug or ID (e.g., tibet, california, france)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b86d7caf-a5a9-4af8-a0f7-2332643ec0a1",
+              "name": "Plants in distribution zone returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "plants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[establishment]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution zone slug or ID (e.g., tibet, california, france)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 559,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 3203,\n      \"genus\": \"string\",\n      \"image_url\": \"https://ExMGtWIy.ltOLKkH61S-pa1eTay0,9H\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {\n        \"self\": \"string\",\n        \"plant\": \"string\",\n        \"genus\": \"string\"\n      }\n    },\n    {\n      \"id\": 1654,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 2999,\n      \"genus\": \"string\",\n      \"image_url\": \"http://NUSJlVPmhkdZcpzBzqyp.gmPkxSn.ITl,DjaHIuZ.wp.f6gZm1KpsHl2Cta2YdSMxLBLZrVPxTMrRY0U8U.K5O7-3eQ95f\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {\n        \"self\": \"string\",\n        \"plant\": \"string\",\n        \"genus\": \"string\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"string\",\n    \"first\": \"string\",\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"last\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66826cfc-7120-4d5d-b8f5-b47496a82bb9",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "plants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[establishment]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution zone slug or ID (e.g., tibet, california, france)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://trefle.io/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6ddee812-a535-4d0d-b6a1-89067e51c98e",
+    "name": "Trefle Distributions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Trefle is an open, freely accessible botanical data source and REST API for plant information. The API provides access to data on kingdoms, subkingdoms, divisions, plant families, genus, plant species, and geographic distributions. Over 400,000 plant species are available. Authentication uses a personal access token passed as a query parameter or Authorization header.\n\nContact Support:\n Name: Trefle Support",
+      "type": "text/plain"
+    }
+  }
+}

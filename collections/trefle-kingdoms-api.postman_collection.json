@@ -1,0 +1,306 @@
+{
+  "item": [
+    {
+      "id": "f1fc8f96-a1ef-4686-89da-cd0e6f0c5a0f",
+      "name": "Kingdoms",
+      "description": {
+        "content": "Retrieve botanical kingdom classification data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0e885124-e820-4bd9-9233-e4395cd3103e",
+          "name": "List Kingdoms",
+          "request": {
+            "name": "List Kingdoms",
+            "description": {
+              "content": "Returns a list of botanical kingdoms in the Trefle taxonomy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kingdoms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c79b9e31-28d4-4ce3-b2ec-9d60b0b76b72",
+              "name": "Kingdoms returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kingdoms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 3719,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"links\": {}\n    },\n    {\n      \"id\": 6295,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"links\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c44c16f-5415-46f9-9738-3668ea4f2d0c",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kingdoms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d46e08c-16b4-4f97-aa40-41727b36545d",
+          "name": "Get Kingdom",
+          "request": {
+            "name": "Get Kingdom",
+            "description": {
+              "content": "Retrieves details of a specific botanical kingdom.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kingdoms",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e32a9478-1128-43bf-a75a-62b77a318228",
+              "name": "Kingdom returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kingdoms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 5209,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"links\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "503ad27a-646d-4da2-b71a-940f4c18cc7f",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kingdoms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://trefle.io/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7184f77e-219e-430b-b389-decceffbde0d",
+    "name": "Trefle Distributions Kingdoms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Trefle is an open, freely accessible botanical data source and REST API for plant information. The API provides access to data on kingdoms, subkingdoms, divisions, plant families, genus, plant species, and geographic distributions. Over 400,000 plant species are available. Authentication uses a personal access token passed as a query parameter or Authorization header.\n\nContact Support:\n Name: Trefle Support",
+      "type": "text/plain"
+    }
+  }
+}

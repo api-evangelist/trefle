@@ -1,0 +1,164 @@
+{
+  "item": [
+    {
+      "id": "056f573e-d11c-4da8-a181-63e291446ef1",
+      "name": "Division Orders",
+      "description": {
+        "content": "Retrieve botanical division order classification data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "70183ff9-9190-4581-b12a-7ecfe89bd72a",
+          "name": "List Division Orders",
+          "request": {
+            "name": "List Division Orders",
+            "description": {
+              "content": "Returns a list of botanical division orders.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "division_orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "155e3aac-5fae-4357-a9d4-89601aeee8e7",
+              "name": "Division orders returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "division_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 403,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"links\": {}\n    },\n    {\n      \"id\": 6634,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"links\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b320e5d6-7cdf-4d16-bae7-0131fcadb7a9",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "division_orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://trefle.io/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dbbda6c9-df8d-4375-8c78-b5eb60918b6b",
+    "name": "Trefle Distributions Division Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Trefle is an open, freely accessible botanical data source and REST API for plant information. The API provides access to data on kingdoms, subkingdoms, divisions, plant families, genus, plant species, and geographic distributions. Over 400,000 plant species are available. Authentication uses a personal access token passed as a query parameter or Authorization header.\n\nContact Support:\n Name: Trefle Support",
+      "type": "text/plain"
+    }
+  }
+}

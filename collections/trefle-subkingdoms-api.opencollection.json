@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trefle Distributions Subkingdoms API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subkingdoms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Subkingdoms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/subkingdoms"
+          },
+          "docs": "Returns a list of botanical subkingdoms."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

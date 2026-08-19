@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trefle Distributions Kingdoms API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Kingdoms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Kingdoms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/kingdoms"
+          },
+          "docs": "Returns a list of botanical kingdoms in the Trefle taxonomy."
+        },
+        {
+          "info": {
+            "name": "Get Kingdom",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/kingdoms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves details of a specific botanical kingdom."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

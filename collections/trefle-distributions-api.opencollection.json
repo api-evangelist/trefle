@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trefle Distributions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Distributions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Distributions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/distributions"
+          },
+          "docs": "Returns a list of geographic distribution zones used in Trefle to describe plant native and established ranges."
+        },
+        {
+          "info": {
+            "name": "Get Plants by Distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trefle.io/api/v1/distributions/:id/plants",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution zone slug or ID (e.g., tibet, california, france)"
+              },
+              {
+                "name": "filter[establishment]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by establishment type in the distribution zone"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves plants native or established in a specific geographic distribution zone. Can be filtered by establishment type (native, introduced, etc.)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

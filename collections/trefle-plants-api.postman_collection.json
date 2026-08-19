@@ -1,0 +1,581 @@
+{
+  "item": [
+    {
+      "id": "3a85e5d1-5a8d-4078-b19b-366affe15bf6",
+      "name": "Plants",
+      "description": {
+        "content": "Search, list, and retrieve plant species by various attributes including common name, scientific name, slug, and taxonomic identifiers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "01d2caae-483c-42c6-9d16-8678c48bd5d5",
+          "name": "List Plants",
+          "request": {
+            "name": "List Plants",
+            "description": {
+              "content": "Returns a paginated list of plant species. Supports filtering by common name, slug, complete/incomplete data, and various plant attributes. Results include taxonomic identifiers and basic plant data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[common_name]",
+                  "value": "<string>",
+                  "description": "Filter plants by common name (partial match supported)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[slug]",
+                  "value": "<string>",
+                  "description": "Filter plants by slug"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter_not[common_name]",
+                  "value": "<string>",
+                  "description": "Exclude plants matching this common name"
+                },
+                {
+                  "disabled": false,
+                  "key": "order[common_name]",
+                  "value": "<string>",
+                  "description": "Order results by common name"
+                },
+                {
+                  "disabled": false,
+                  "key": "order[scientific_name]",
+                  "value": "<string>",
+                  "description": "Order results by scientific name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c459c517-e293-4d2f-93fe-0ab1c98985fb",
+              "name": "List of plants returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[slug]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter_not[common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order[common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order[scientific_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 3144,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 8039,\n      \"genus\": \"string\",\n      \"image_url\": \"https://MYJIVehUznFJEyaxDgvyHXaTQlNR.nxEfilunKbvu,IirKj7UwYfR\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {\n        \"self\": \"string\",\n        \"plant\": \"string\",\n        \"genus\": \"string\"\n      }\n    },\n    {\n      \"id\": 5666,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 4026,\n      \"genus\": \"string\",\n      \"image_url\": \"http://qnPIxn.ypYdSSJycuK31JwiZwZFI\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {\n        \"self\": \"string\",\n        \"plant\": \"string\",\n        \"genus\": \"string\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"string\",\n    \"first\": \"string\",\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"last\": \"string\"\n  },\n  \"meta\": {\n    \"total\": 2983\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25fa4f58-f5f8-4284-9179-c24cc3d828f7",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter[common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[slug]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter_not[common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order[common_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order[scientific_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14a88e7f-552d-4a76-abf3-7b21ea27ffbb",
+          "name": "Search Plants",
+          "request": {
+            "name": "Search Plants",
+            "description": {
+              "content": "Search for plants by common name or scientific name. Optimized for autocomplete and \"as you type\" queries with fast response times. Returns matching plant species with basic taxonomy data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plants",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search query — common name or scientific name"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number for pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a82220c-1012-40cb-b9f0-f2ce36ad482c",
+              "name": "Search results returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 3144,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 8039,\n      \"genus\": \"string\",\n      \"image_url\": \"https://MYJIVehUznFJEyaxDgvyHXaTQlNR.nxEfilunKbvu,IirKj7UwYfR\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {\n        \"self\": \"string\",\n        \"plant\": \"string\",\n        \"genus\": \"string\"\n      }\n    },\n    {\n      \"id\": 5666,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 4026,\n      \"genus\": \"string\",\n      \"image_url\": \"http://qnPIxn.ypYdSSJycuK31JwiZwZFI\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {\n        \"self\": \"string\",\n        \"plant\": \"string\",\n        \"genus\": \"string\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"string\",\n    \"first\": \"string\",\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"last\": \"string\"\n  },\n  \"meta\": {\n    \"total\": 2983\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aba4f0c5-9d33-4a89-b4be-87752991d9a1",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "480f9335-0d8b-4aa8-aeef-e333e4cb7ba7",
+          "name": "Get Plant",
+          "request": {
+            "name": "Get Plant",
+            "description": {
+              "content": "Retrieves detailed information about a plant by its Trefle ID or slug, including full taxonomy, common names, images, and links to species data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plants",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The plant's Trefle ID or slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "633b3f9c-f13e-4f47-ae1d-341b804ca8d1",
+              "name": "Plant details returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The plant's Trefle ID or slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 3148,\n    \"common_name\": \"string\",\n    \"slug\": \"string\",\n    \"scientific_name\": \"string\",\n    \"status\": \"string\",\n    \"rank\": \"string\",\n    \"family_common_name\": \"string\",\n    \"family\": \"string\",\n    \"genus_id\": 5463,\n    \"genus\": \"string\",\n    \"image_url\": \"https://dtEgMiNRS.yhHu-ByAfKOQvvZ3vyjiE7gR86Ozl5cyXDyNckLd6dDLm0Xb.\",\n    \"synonyms\": [\n      \"string\",\n      \"string\"\n    ],\n    \"links\": {\n      \"self\": \"string\",\n      \"plant\": \"string\",\n      \"genus\": \"string\"\n    },\n    \"main_species_id\": 3170,\n    \"main_species\": {\n      \"id\": 7672,\n      \"common_name\": \"string\",\n      \"slug\": \"string\",\n      \"scientific_name\": \"string\",\n      \"status\": \"string\",\n      \"rank\": \"string\",\n      \"family_common_name\": \"string\",\n      \"family\": \"string\",\n      \"genus_id\": 5363,\n      \"genus\": \"string\",\n      \"image_url\": \"http://CZrKjEqxhoELQEJUkrhLwdXO.ujX3f+f2kfkVk,JCCF.Po6ELelKOMOU8vyE9d5xhpA6,.pw7Cup1hB\",\n      \"synonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db909052-6579-41ce-8157-76d61088e1df",
+              "name": "Authentication failed. Access token missing, invalid, or expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The plant's Trefle ID or slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "121c5483-bf22-4c3b-8ef0-a108dc896cbb",
+              "name": "Plant not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plants",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The plant's Trefle ID or slug"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://trefle.io/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5cb8f949-7d4c-409b-a0cf-4bc902d86a79",
+    "name": "Trefle Distributions Plants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Trefle is an open, freely accessible botanical data source and REST API for plant information. The API provides access to data on kingdoms, subkingdoms, divisions, plant families, genus, plant species, and geographic distributions. Over 400,000 plant species are available. Authentication uses a personal access token passed as a query parameter or Authorization header.\n\nContact Support:\n Name: Trefle Support",
+      "type": "text/plain"
+    }
+  }
+}
