@@ -4,6 +4,18 @@ description: >-
   An open, freely accessible botanical data source and REST API for plant information covering over 400,000 plant
   species with taxonomy, morphology, growth requirements, and geographic distributions.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
