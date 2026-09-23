@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Trefle Distributions Plants API
+  title: Trefle Plants API
   description: Trefle is an open, freely accessible botanical data source and REST API for plant information. The API provides access to data on kingdoms, subkingdoms, divisions, plant families, genus, plant species, and geographic distributions. Over 400,000 plant species are available. Authentication uses a personal access token passed as a query parameter or Authorization header.
   version: 1.0.0
   contact:
@@ -146,7 +146,25 @@ paths:
         '404':
           description: Plant not found
 components:
+  responses:
+    Unauthorized:
+      description: Authentication failed. Access token missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
   schemas:
+    PaginationMeta:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query
     SpeciesSummary:
       type: object
       properties:
@@ -192,6 +210,15 @@ components:
           type: string
         last:
           type: string
+    Plant:
+      allOf:
+      - $ref: '#/components/schemas/PlantSummary'
+      - type: object
+        properties:
+          main_species_id:
+            type: integer
+          main_species:
+            $ref: '#/components/schemas/SpeciesSummary'
     PlantSummary:
       type: object
       properties:
@@ -241,33 +268,6 @@ components:
               type: string
             genus:
               type: string
-    Plant:
-      allOf:
-      - $ref: '#/components/schemas/PlantSummary'
-      - type: object
-        properties:
-          main_species_id:
-            type: integer
-          main_species:
-            $ref: '#/components/schemas/SpeciesSummary'
-    PaginationMeta:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of records matching the query
-  responses:
-    Unauthorized:
-      description: Authentication failed. Access token missing, invalid, or expired.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-              message:
-                type: string
   securitySchemes:
     tokenAuth:
       type: apiKey
