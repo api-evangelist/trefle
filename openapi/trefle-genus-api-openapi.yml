@@ -73,19 +73,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Genus:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        slug:
-          type: string
-        family:
-          type: object
-        links:
-          type: object
     PaginationLinks:
       type: object
       properties:
@@ -99,6 +86,19 @@ components:
           type: string
         last:
           type: string
+    Genus:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        family:
+          type: object
+        links:
+          type: object
   responses:
     Unauthorized:
       description: Authentication failed. Access token missing, invalid, or expired.

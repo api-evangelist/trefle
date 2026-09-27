@@ -132,19 +132,26 @@ paths:
         '404':
           description: Species not found
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed. Access token missing, invalid, or expired.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-              message:
-                type: string
   schemas:
+    Measurement:
+      type: object
+      properties:
+        cm:
+          type: number
+          description: Measurement in centimeters
+    PaginationLinks:
+      type: object
+      properties:
+        self:
+          type: string
+        first:
+          type: string
+        next:
+          type: string
+        prev:
+          type: string
+        last:
+          type: string
     Species:
       allOf:
       - $ref: '#/components/schemas/SpeciesSummary'
@@ -306,25 +313,18 @@ components:
             type: string
         links:
           type: object
-    PaginationLinks:
-      type: object
-      properties:
-        self:
-          type: string
-        first:
-          type: string
-        next:
-          type: string
-        prev:
-          type: string
-        last:
-          type: string
-    Measurement:
-      type: object
-      properties:
-        cm:
-          type: number
-          description: Measurement in centimeters
+  responses:
+    Unauthorized:
+      description: Authentication failed. Access token missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
   securitySchemes:
     tokenAuth:
       type: apiKey

@@ -146,57 +146,7 @@ paths:
         '404':
           description: Plant not found
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed. Access token missing, invalid, or expired.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-              message:
-                type: string
   schemas:
-    PaginationMeta:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of records matching the query
-    SpeciesSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        common_name:
-          type: string
-        slug:
-          type: string
-        scientific_name:
-          type: string
-        status:
-          type: string
-        rank:
-          type: string
-        family_common_name:
-          type: string
-        family:
-          type: string
-        genus_id:
-          type: integer
-        genus:
-          type: string
-        image_url:
-          type: string
-          format: uri
-        synonyms:
-          type: array
-          items:
-            type: string
-        links:
-          type: object
     PaginationLinks:
       type: object
       properties:
@@ -210,15 +160,12 @@ components:
           type: string
         last:
           type: string
-    Plant:
-      allOf:
-      - $ref: '#/components/schemas/PlantSummary'
-      - type: object
-        properties:
-          main_species_id:
-            type: integer
-          main_species:
-            $ref: '#/components/schemas/SpeciesSummary'
+    PaginationMeta:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query
     PlantSummary:
       type: object
       properties:
@@ -268,6 +215,59 @@ components:
               type: string
             genus:
               type: string
+    Plant:
+      allOf:
+      - $ref: '#/components/schemas/PlantSummary'
+      - type: object
+        properties:
+          main_species_id:
+            type: integer
+          main_species:
+            $ref: '#/components/schemas/SpeciesSummary'
+    SpeciesSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        common_name:
+          type: string
+        slug:
+          type: string
+        scientific_name:
+          type: string
+        status:
+          type: string
+        rank:
+          type: string
+        family_common_name:
+          type: string
+        family:
+          type: string
+        genus_id:
+          type: integer
+        genus:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        synonyms:
+          type: array
+          items:
+            type: string
+        links:
+          type: object
+  responses:
+    Unauthorized:
+      description: Authentication failed. Access token missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
   securitySchemes:
     tokenAuth:
       type: apiKey
