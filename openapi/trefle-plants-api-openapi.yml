@@ -147,25 +147,15 @@ paths:
           description: Plant not found
 components:
   schemas:
-    PaginationLinks:
-      type: object
-      properties:
-        self:
-          type: string
-        first:
-          type: string
-        next:
-          type: string
-        prev:
-          type: string
-        last:
-          type: string
-    PaginationMeta:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of records matching the query
+    Plant:
+      allOf:
+      - $ref: '#/components/schemas/PlantSummary'
+      - type: object
+        properties:
+          main_species_id:
+            type: integer
+          main_species:
+            $ref: '#/components/schemas/SpeciesSummary'
     PlantSummary:
       type: object
       properties:
@@ -215,15 +205,19 @@ components:
               type: string
             genus:
               type: string
-    Plant:
-      allOf:
-      - $ref: '#/components/schemas/PlantSummary'
-      - type: object
-        properties:
-          main_species_id:
-            type: integer
-          main_species:
-            $ref: '#/components/schemas/SpeciesSummary'
+    PaginationLinks:
+      type: object
+      properties:
+        self:
+          type: string
+        first:
+          type: string
+        next:
+          type: string
+        prev:
+          type: string
+        last:
+          type: string
     SpeciesSummary:
       type: object
       properties:
@@ -256,6 +250,12 @@ components:
             type: string
         links:
           type: object
+    PaginationMeta:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query
   responses:
     Unauthorized:
       description: Authentication failed. Access token missing, invalid, or expired.
