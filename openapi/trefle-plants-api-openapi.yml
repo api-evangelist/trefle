@@ -147,15 +147,57 @@ paths:
           description: Plant not found
 components:
   schemas:
-    Plant:
-      allOf:
-      - $ref: '#/components/schemas/PlantSummary'
-      - type: object
-        properties:
-          main_species_id:
-            type: integer
-          main_species:
-            $ref: '#/components/schemas/SpeciesSummary'
+    PaginationMeta:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query
+    SpeciesSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        common_name:
+          type: string
+        slug:
+          type: string
+        scientific_name:
+          type: string
+        status:
+          type: string
+        rank:
+          type: string
+        family_common_name:
+          type: string
+        family:
+          type: string
+        genus_id:
+          type: integer
+        genus:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        synonyms:
+          type: array
+          items:
+            type: string
+        links:
+          type: object
+    PaginationLinks:
+      type: object
+      properties:
+        self:
+          type: string
+        first:
+          type: string
+        next:
+          type: string
+        prev:
+          type: string
+        last:
+          type: string
     PlantSummary:
       type: object
       properties:
@@ -205,57 +247,15 @@ components:
               type: string
             genus:
               type: string
-    PaginationLinks:
-      type: object
-      properties:
-        self:
-          type: string
-        first:
-          type: string
-        next:
-          type: string
-        prev:
-          type: string
-        last:
-          type: string
-    SpeciesSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        common_name:
-          type: string
-        slug:
-          type: string
-        scientific_name:
-          type: string
-        status:
-          type: string
-        rank:
-          type: string
-        family_common_name:
-          type: string
-        family:
-          type: string
-        genus_id:
-          type: integer
-        genus:
-          type: string
-        image_url:
-          type: string
-          format: uri
-        synonyms:
-          type: array
-          items:
-            type: string
-        links:
-          type: object
-    PaginationMeta:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of records matching the query
+    Plant:
+      allOf:
+      - $ref: '#/components/schemas/PlantSummary'
+      - type: object
+        properties:
+          main_species_id:
+            type: integer
+          main_species:
+            $ref: '#/components/schemas/SpeciesSummary'
   responses:
     Unauthorized:
       description: Authentication failed. Access token missing, invalid, or expired.
