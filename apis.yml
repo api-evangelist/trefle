@@ -330,6 +330,12 @@ apis:
   - type: SpectralRuleset
     url: rules/trefle-rules.yml
 common:
+  - type: Plans
+    url: plans/trefle-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/trefle-rate-limits.yml
+  - type: FinOps
+    url: finops/trefle-finops.yml
   - type: AgenticAccess
     url: agentic-access/trefle-agentic-access.yml
   - type: DomainSecurity
