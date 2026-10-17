@@ -72,20 +72,19 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication failed. Access token missing, invalid, or expired.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
   schemas:
-    PaginationLinks:
-      type: object
-      properties:
-        self:
-          type: string
-        first:
-          type: string
-        next:
-          type: string
-        prev:
-          type: string
-        last:
-          type: string
     Family:
       type: object
       properties:
@@ -101,18 +100,19 @@ components:
           type: object
         links:
           type: object
-  responses:
-    Unauthorized:
-      description: Authentication failed. Access token missing, invalid, or expired.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-              message:
-                type: string
+    PaginationLinks:
+      type: object
+      properties:
+        self:
+          type: string
+        first:
+          type: string
+        next:
+          type: string
+        prev:
+          type: string
+        last:
+          type: string
   securitySchemes:
     tokenAuth:
       type: apiKey

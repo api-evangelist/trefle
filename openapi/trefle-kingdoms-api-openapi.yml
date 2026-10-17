@@ -65,18 +65,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  schemas:
-    TaxonomyEntry:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        slug:
-          type: string
-        links:
-          type: object
   responses:
     Unauthorized:
       description: Authentication failed. Access token missing, invalid, or expired.
@@ -89,6 +77,18 @@ components:
                 type: string
               message:
                 type: string
+  schemas:
+    TaxonomyEntry:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        links:
+          type: object
   securitySchemes:
     tokenAuth:
       type: apiKey

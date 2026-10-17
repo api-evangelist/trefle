@@ -133,6 +133,63 @@ paths:
           description: Species not found
 components:
   schemas:
+    SpeciesSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        common_name:
+          type: string
+        slug:
+          type: string
+        scientific_name:
+          type: string
+        status:
+          type: string
+        rank:
+          type: string
+        family_common_name:
+          type: string
+        family:
+          type: string
+        genus_id:
+          type: integer
+        genus:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        synonyms:
+          type: array
+          items:
+            type: string
+        links:
+          type: object
+    PaginationMeta:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query
+    PaginationLinks:
+      type: object
+      properties:
+        self:
+          type: string
+        first:
+          type: string
+        next:
+          type: string
+        prev:
+          type: string
+        last:
+          type: string
+    Measurement:
+      type: object
+      properties:
+        cm:
+          type: number
+          description: Measurement in centimeters
     Species:
       allOf:
       - $ref: '#/components/schemas/SpeciesSummary'
@@ -256,63 +313,6 @@ components:
                 type: string
               seed_persistence:
                 type: boolean
-    PaginationMeta:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of records matching the query
-    SpeciesSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        common_name:
-          type: string
-        slug:
-          type: string
-        scientific_name:
-          type: string
-        status:
-          type: string
-        rank:
-          type: string
-        family_common_name:
-          type: string
-        family:
-          type: string
-        genus_id:
-          type: integer
-        genus:
-          type: string
-        image_url:
-          type: string
-          format: uri
-        synonyms:
-          type: array
-          items:
-            type: string
-        links:
-          type: object
-    PaginationLinks:
-      type: object
-      properties:
-        self:
-          type: string
-        first:
-          type: string
-        next:
-          type: string
-        prev:
-          type: string
-        last:
-          type: string
-    Measurement:
-      type: object
-      properties:
-        cm:
-          type: number
-          description: Measurement in centimeters
   responses:
     Unauthorized:
       description: Authentication failed. Access token missing, invalid, or expired.
